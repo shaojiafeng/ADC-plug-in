@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+   <h1>列表页面</h1>
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                {% for item in head_list %}
+                    <th>{{ item }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for obj in data_list %}
+                <tr>
+                    {% for col in obj  %}
+                        <td>{{ col }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+
+
+
+    </table>
+</div>
+
+
+
+</body>
+</html>

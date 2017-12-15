@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" />
+{#    <link rel="stylesheet" href="{% static "css/stark-form.css" %}" />#}
+    <style>
+        .btn-danger{
+            margin-left: 40%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dear,Are you sure you want to delete it? </h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="SURE">
+    </form>
+
+</body>
+</html>

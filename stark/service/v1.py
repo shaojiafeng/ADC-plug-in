@@ -7,6 +7,7 @@ from django.urls import reverse
 #StarkConfig类：用于为每一个类生成url的对应关系，并处理用户的请求
 class StarkConfig(object):
 
+    #1.定制列表页面显示的列
     def checkbox(self, obj=None, is_header=False):
         if is_header:
             return '选择'

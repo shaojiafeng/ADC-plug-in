@@ -1,9 +1,11 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" />
+     <link rel="stylesheet" href="{% static "css/stark-form.css" %}" />
 </head>
 <body>
 <div class="container">
@@ -32,8 +34,6 @@
                 </tr>
             {% endfor %}
         </tbody>
-
-
 
     </table>
 </div>

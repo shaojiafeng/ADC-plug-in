@@ -25,3 +25,8 @@ class UserType(models.Model):
 
     def __str__(self):
         return self.xxx
+
+class Host(models.Model):
+    hostname = models.CharField(verbose_name='主机名',max_length=32)
+    ip = models.GenericIPAddressField(verbose_name="IP",protocol='ipv4')
+    port = models.IntegerField(verbose_name='端口')

@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse,redirect,render
 from django.utils.safestring import mark_safe
 from stark.service import v1
 from app01 import models
@@ -29,6 +29,15 @@ class UserInfoConfig(v1.StarkConfig):
     #将model_form_class加进userinfoconfig的配置中
     model_form_class = UserInfoModelForm
 
+    #确定是否删除
+    def delete_view(self, request, nid, *args, **kwargs):
+        if request.method == 'GET':
+            return render(request,'my_delete.html')
+
+        else:
+            self.model_class.objects.filter(pk=nid).delete()
+            return redirect(self.get_list_url())
+
 
 v1.site.register(models.UserInfo,UserInfoConfig)
 
@@ -39,9 +48,45 @@ class RoleConfig(v1.StarkConfig):
 
 v1.site.register(models.Role,RoleConfig)
 
-# class RoleConfig(v1,StarkConfig):
-#     list_display = ['caption']
 
+
+
+class HostConfig(v1.StarkConfig):
+
+    #自定义列：
+    def ip_port(self,obj=None,is_header=False):
+        if is_header:
+            return '自定制列'
+        return "%s:%s" %(obj.ip,obj.port,)
+
+    list_display = ['id', 'hostname', 'ip', 'port', ip_port]
+
+
+    #添加按钮是否显示(False就不显示)
+    show_add_btn = True
+
+    #在app01/host/report    对请求的处理放在了自己的urlconfig里面
+    def extra_url(self):
+        urls = [
+            url('^report/$',self.report_view)
+        ]
+
+        return urls
+    def report_view(self,request):
+        return HttpResponse('我是自定义报表')
+
+    #重写删除按钮，进行限制代码优先寻找自己重写的方法
+    def delete_view(self, request, nid, *args, **kwargs):
+        if request.method == 'GET':
+            return render(request,'my_delete.html')
+
+        else:
+            self.model_class.objects.filter(pk=nid).delete()
+            return redirect(self.get_list_url())
+
+
+
+v1.site.register(models.Host,HostConfig)
 
 
 

@@ -13,8 +13,19 @@
 
     {% if cl.show_add_btn  %}
     <a class="btn btn-primary" href="{{ cl.add_url }}">添加</a>
-
     {% endif %}
+
+
+        <div class="form-group">
+            <form method="get">
+                <input name="{{ cl.config.search_key }}" value="{{ cl.search_form_val }}" class="form-control" placeholder="请输入搜索条件" type="text"  style="display:inline-block;width: 200px;"/>
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+
+            </form>
+        </div>
+
+
+
     <table class="table table-hover">
 
         <thead>

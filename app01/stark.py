@@ -29,6 +29,9 @@ class UserInfoConfig(v1.StarkConfig):
     #将model_form_class加进userinfoconfig的配置中
     model_form_class = UserInfoModelForm
 
+    show_search_form = True
+    search_fields = ['name__contains', 'email__contains']
+
     #确定是否删除
     def delete_view(self, request, nid, *args, **kwargs):
         if request.method == 'GET':

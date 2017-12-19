@@ -3,6 +3,7 @@ from django.conf.urls import url
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from django.http import  QueryDict
+from django.db.models import Q
 
 from app01 import models
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -16,6 +17,10 @@ class ChangeList(object):
         self.request = config.request
         self.show_add_btn = config.get_show_add_btn()
 
+        #模糊关键字搜索
+        self.show_search_form = config.get_show_search_form()
+        self.search_form_val = config.request.GET.get(config.search_key,'')
+
         # 处理分页
         from utils.pager import Pagination
         current_page = self.request.GET.get('page', 1)
@@ -26,6 +31,8 @@ class ChangeList(object):
         self.page_obj = page_obj
 
         self.data_list = queryset[page_obj.start:page_obj.end]
+
+
 
     def add_url(self):
         return self.config.get_add_url()
@@ -140,12 +147,40 @@ class StarkConfig(object):
 
         return TestModelForm
 
+
+
+    #4.关键字搜索
+    show_search_form = False
+    def get_show_search_form(self):
+        return self.show_search_form
+
+    search_fieids = []
+    def get_search_fields(self):
+        result = []
+        if self.search_fields:
+            result.extend(self.search_fields)
+
+        return result
+
+    def get_search_condition(self):
+        key_word = self.request.GET.get(self.search_key)
+        search_fields = self.get_search_fields()
+        condition = Q()
+        condition.connector = 'or'
+        if key_word and self.get_show_search_form():
+            for field_name in search_fields:
+                condition.children.append((field_name, key_word))
+        return condition
+
+
     def __init__(self,model_class,site):
         self.model_class = model_class
         self.site = site
 
         self.request = None
         self._query_param_key = "_listfilter"
+        self.search_key = "_q"
+
 
 
 #############  URL相关 ##########
@@ -205,7 +240,18 @@ class StarkConfig(object):
     #列表页面
     def changelist_view(self,request,*args,**kwargs):
 
-        queryset = self.model_class.objects.all()
+        if request.method == 'POST' and self.get_show_actions():
+            func_name_str = request.POST.get('list_action')
+            action_func = getattr(self,func_name_str)
+            ret = action_func(request)
+            if ret:
+                return ret
+
+        # key_word = request.GET.get('q')
+        # search_fieids = self.get_search_fields()
+
+
+        queryset = self.model_class.objects.filter(self.get_search_condition())
         cl = ChangeList(self,queryset)
 
         return render(request,'stark/changelist.html',{'cl':cl})

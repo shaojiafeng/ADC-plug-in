@@ -10,15 +10,24 @@
         .btn-danger{
             margin-left: 40%;
         }
+
+        .s1{
+            margin-top: 150px;
+            text-align:center
+        }
     </style>
 </head>
 <body>
-
-    <h1>Dear,Are you sure you want to delete it? </h1>
+    <div class="s1">
+        <h1>Dear,Are you sure you want to delete it? </h1>
     <form method="post">
         {% csrf_token %}
+
         <input type="submit" class="btn btn-danger" value="SURE">
     </form>
+
+    </div>
+
 
 </body>
 </html>

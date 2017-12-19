@@ -34,8 +34,14 @@
                 </tr>
             {% endfor %}
         </tbody>
-
     </table>
+    <div>
+        <ul class="pagination">
+            {{ page_obj.page_html|safe }}
+        </ul>
+    </div>
+
+
 </div>
 
 

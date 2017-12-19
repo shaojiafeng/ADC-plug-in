@@ -2,6 +2,37 @@ from django.shortcuts import HttpResponse,render,redirect
 from django.conf.urls import url
 from django.utils.safestring import mark_safe
 from django.urls import reverse
+from django.http import  QueryDict
+
+from app01 import models
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+
+class ChangeList(object):
+    def __init__(self,config):
+        self.config = config
+
+        self.list_display = config.get_list_display()
+        self.model_class = config.model_class
+
+    def head_list(self):
+        """
+        构造表头
+        :return:
+       """
+        result = []
+        for field_name in self.list_display():
+            if isinstance(field_name,str):
+
+
+                # 根据类和字段名称，获取字段对象的verbose_name
+                verbose_name = self.model_class._meta.get_field(field_name).verbose_name
+
+            else:
+                verbose_name = field_name(self.config,is_header=True)
+
+            result.append(verbose_name)
+        return result
+
 
 
 #StarkConfig类：用于为每一个类生成url的对应关系，并处理用户的请求
@@ -16,13 +47,21 @@ class StarkConfig(object):
     def edit(self, obj=None, is_header=False):
         if is_header:
             return '编辑'
+        #获取条件
+        query_str = self.request.GET.urlencode()
+        if query_str:
+            #重新构造
+            params = QueryDict(mutable=True)
+            params[self._query_param_key] = query_str
+
+            return mark_safe('<a href="%s?%s">编辑</a>' % (self.get_change_url(obj.id),params.urlencode(),))
         return mark_safe('<a href="%s">编辑</a>' % (self.get_change_url(obj.id),))
+
 
     def delete(self, obj=None, is_header=False):
         if is_header:
             return '删除'
         return mark_safe('<a href="%s">删除</a>' % (self.get_delete_url(obj.id),))
-
 
     list_display = []
 
@@ -50,6 +89,7 @@ class StarkConfig(object):
     def get_show_add_btn(self):
         return self.show_add_btn
 
+
     #3.使model_form_class是可配置的
     model_form_class = None
     def get_model_form_class(self):
@@ -74,13 +114,23 @@ class StarkConfig(object):
         self.model_class = model_class
         self.site = site
 
+        self.request = None
+        self._query_param_key = "_listfilter"
+
+
+#############  URL相关 ##########
+    def wrap(self,view_func):
+        def inner(request,*args,**kwargs):
+            self.request = request
+            return view_func(request,*args,**kwargs)
+        return inner
     def get_urls(self):
         app_model_name = (self.model_class._meta.app_label, self.model_class._meta.model_name,)
         url_patterns = [
-            url(r'^$', self.changelist_view, name='%s_%s_changelist' % app_model_name),
-            url(r'^add/$', self.add_view, name='%s_%s_add' % app_model_name),
-            url(r'^(\d+)/delete/$', self.delete_view, name='%s_%s_delete' % app_model_name),
-            url(r'^(\d+)/change/$', self.change_view, name='%s_%s_change' % app_model_name),
+            url(r'^$', self.wrap(self.changelist_view), name='%s_%s_changelist' % app_model_name),
+            url(r'^add/$', self.wrap(self.add_view), name='%s_%s_add' % app_model_name),
+            url(r'^(\d+)/delete/$', self.wrap(self.delete_view), name='%s_%s_delete' % app_model_name),
+            url(r'^(\d+)/change/$',self.wrap(self.change_view), name='%s_%s_change' % app_model_name),
         ]
 
         url_patterns.extend(self.extra_url())
@@ -98,63 +148,63 @@ class StarkConfig(object):
 		# False
 		# >>> isinstance (a,(str,int,list))    # 是元组中的一个返回 True
 		# True
-
     def extra_url(self):
         return []
-
     @property
     def urls(self):
         return self.get_urls()
-
-
     def get_change_url(self,nid):
         name = "stark:%s_%s_change" % (self.model_class._meta.app_label,self.model_class._meta.model_name,)
         edit_url = reverse(name,args=(nid,))
         return edit_url
-
     def get_list_url(self):
         name = "stark:%s_%s_changelist" % (self.model_class._meta.app_label, self.model_class._meta.model_name,)
         edit_url = reverse(name)
         return edit_url
-
     def get_add_url(self):
         name = "stark:%s_%s_add" % (self.model_class._meta.app_label, self.model_class._meta.model_name,)
         edit_url = reverse(name)
         return edit_url
-
     def get_delete_url(self,nid):
         name = "stark:%s_%s_delete" % (self.model_class._meta.app_label, self.model_class._meta.model_name,)
         edit_url = reverse(name,args=(nid,))
         return edit_url
 
+######################  处理请求的方法###########
 
     #列表页面
     def changelist_view(self,request,*args,**kwargs):
 
+        cl = ChangeList(self)
+
         #处理表头
-        # head_list = []
-        def head_list():
-            for field_name in self.get_list_display():
-                if isinstance(field_name,str):
+        head_list = []
+        for field_name in self.get_list_display():
+            if isinstance(field_name,str):
+
+                # 根据类和字段名称，获取字段对象的verbose_name
+                verbose_name = self.model_class._meta.get_field(field_name).verbose_name
+
+            else:
+                verbose_name = field_name(self,is_header=True)
+
+            head_list.append(verbose_name)
 
 
-                    # 根据类和字段名称，获取字段对象的verbose_name
-                    verbose_name = self.model_class._meta.get_field(field_name).verbose_name
-
-                else:
-                    verbose_name = field_name(self,is_header=True)
-
-                #head_list.append(verbose_name)
-                yield verbose_name
+        #处理分页
+        from utils.pager import Pagination
+        current_page = request.GET.get('page',1)
+        total_count = self.model_class.objects.all().count()
 
 
+        page_obj = Pagination(current_page,total_count,request.path_info,request.GET,per_page_count=4,max_pager_count=5)
 
-        ## 获取表中的数据
+
+
+        #处理表中的数据
         #list_display = [checkbox, 'id', 'name', edit]
-        data_list = self.model_class.objects.all()
+        data_list = self.model_class.objects.all()[page_obj.start:page_obj.end]
         new_data_list = []
-
-
         for row in data_list:
                 # row是 UserInfo(id=1,name='小花')
                 # row.id,row.name,
@@ -170,7 +220,12 @@ class StarkConfig(object):
 
 
         return render(request,'stark/changelist.html',
-                      {'data_list':new_data_list,'head_list':head_list,'add_url':self.get_add_url(),'show_add_btn':self.get_show_add_btn()})
+                      {"page_obj":page_obj,
+                       'data_list':new_data_list,
+                       'head_list':head_list,
+                       'add_url':self.get_add_url(),
+                       'show_add_btn':self.get_show_add_btn()
+                       })
 
     #添加页面
     def add_view(self, request, *args, **kwargs):
@@ -207,7 +262,10 @@ class StarkConfig(object):
             form = model_form_class(instance=obj,data=request.POST)
             if form.is_valid():#表示合法
                 form.save()
-                return redirect(self.get_list_url())
+                list_query_str = request.GET.get(self._query_param_key)
+                list_url = "%s?%s" %(self.get_list_url(),list_query_str,)
+
+                return redirect(list_url)
             return render(request,'stark/change_view.html',{'form':form})
 
 
@@ -221,8 +279,6 @@ class StarkConfig(object):
 
 
 
-
-
 #StarkSite类：是一个容器，用于放置处理请求的对应关系
 class StarkSite(object):
     def __init__(self):
@@ -231,7 +287,6 @@ class StarkSite(object):
             models.UserInfo:
         }
         """
-
         self._registry = {}
 
     def register(self, model_class, stark_config_class=None):

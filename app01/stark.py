@@ -38,8 +38,10 @@ class UserInfoConfig(v1.StarkConfig):
             self.model_class.objects.filter(pk=nid).delete()
             return redirect(self.get_list_url())
 
-
 v1.site.register(models.UserInfo,UserInfoConfig)
+
+
+
 
 
 class RoleConfig(v1.StarkConfig):
@@ -83,8 +85,6 @@ class HostConfig(v1.StarkConfig):
         else:
             self.model_class.objects.filter(pk=nid).delete()
             return redirect(self.get_list_url())
-
-
 
 v1.site.register(models.Host,HostConfig)
 

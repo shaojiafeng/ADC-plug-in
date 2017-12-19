@@ -11,22 +11,22 @@
 <div class="container">
    <h1>列表页面</h1>
 
-    {% if show_add_btn  %}
-    <a class="btn btn-primary" href="{{ add_url }}">添加</a>
+    {% if cl.show_add_btn  %}
+    <a class="btn btn-primary" href="{{ cl.add_url }}">添加</a>
 
     {% endif %}
     <table class="table table-hover">
 
         <thead>
             <tr>
-                {% for item in head_list %}
+                {% for item in cl.head_list %}
                     <th>{{ item }}</th>
                 {% endfor %}
             </tr>
         </thead>
 
         <tbody>
-            {% for obj in data_list %}
+            {% for obj in cl.body_list %}
                 <tr>
                     {% for col in obj  %}
                         <td>{{ col }}</td>
@@ -37,7 +37,7 @@
     </table>
     <div>
         <ul class="pagination">
-            {{ page_obj.page_html|safe }}
+            {{ cl.page_obj.page_html|safe }}
         </ul>
     </div>
 

@@ -8,11 +8,27 @@ from app01 import models
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 class ChangeList(object):
-    def __init__(self,config):
+    def __init__(self,config,queryset):
         self.config = config
 
         self.list_display = config.get_list_display()
         self.model_class = config.model_class
+        self.request = config.request
+        self.show_add_btn = config.get_show_add_btn()
+
+        # 处理分页
+        from utils.pager import Pagination
+        current_page = self.request.GET.get('page', 1)
+        total_count = queryset.count()
+
+        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=4,
+                              max_pager_count=5)
+        self.page_obj = page_obj
+
+        self.data_list = queryset[page_obj.start:page_obj.end]
+
+    def add_url(self):
+        return self.config.get_add_url()
 
     def head_list(self):
         """
@@ -20,7 +36,7 @@ class ChangeList(object):
         :return:
        """
         result = []
-        for field_name in self.list_display():
+        for field_name in self.list_display:
             if isinstance(field_name,str):
 
 
@@ -32,6 +48,26 @@ class ChangeList(object):
 
             result.append(verbose_name)
         return result
+
+    def body_list(self):
+
+        data_list = self.data_list
+        new_data_list = []
+        for row in data_list:
+            # row是 UserInfo(id=1,name='小花')
+            # row.id,row.name,
+
+            temp = []
+            for field_name in self.list_display:
+                if isinstance(field_name, str):
+                    val = getattr(row, field_name)
+                else:
+                    val = field_name(self.config, row)
+                temp.append(val)
+            new_data_list.append(temp)
+
+        return new_data_list
+
 
 
 
@@ -67,7 +103,6 @@ class StarkConfig(object):
 
     def get_list_display(self):
         data = []
-
         if self.list_display:
             data.extend(self.list_display)
             data.append(StarkConfig.edit)
@@ -76,11 +111,6 @@ class StarkConfig(object):
 
         return data
 
-
-
-
-    # def changelist_view(self, request, *args, **kwargs):
-    #     return HttpResponse('列表')
 
     #2.显示是否添加按钮
 
@@ -175,57 +205,10 @@ class StarkConfig(object):
     #列表页面
     def changelist_view(self,request,*args,**kwargs):
 
-        cl = ChangeList(self)
+        queryset = self.model_class.objects.all()
+        cl = ChangeList(self,queryset)
 
-        #处理表头
-        head_list = []
-        for field_name in self.get_list_display():
-            if isinstance(field_name,str):
-
-                # 根据类和字段名称，获取字段对象的verbose_name
-                verbose_name = self.model_class._meta.get_field(field_name).verbose_name
-
-            else:
-                verbose_name = field_name(self,is_header=True)
-
-            head_list.append(verbose_name)
-
-
-        #处理分页
-        from utils.pager import Pagination
-        current_page = request.GET.get('page',1)
-        total_count = self.model_class.objects.all().count()
-
-
-        page_obj = Pagination(current_page,total_count,request.path_info,request.GET,per_page_count=4,max_pager_count=5)
-
-
-
-        #处理表中的数据
-        #list_display = [checkbox, 'id', 'name', edit]
-        data_list = self.model_class.objects.all()[page_obj.start:page_obj.end]
-        new_data_list = []
-        for row in data_list:
-                # row是 UserInfo(id=1,name='小花')
-                # row.id,row.name,
-
-            temp = []
-            for field_name in self.get_list_display():
-                if isinstance(field_name,str):
-                    val = getattr(row,field_name)
-                else:
-                    val = field_name(self,row)
-                temp.append(val)
-            new_data_list.append(temp)
-
-
-        return render(request,'stark/changelist.html',
-                      {"page_obj":page_obj,
-                       'data_list':new_data_list,
-                       'head_list':head_list,
-                       'add_url':self.get_add_url(),
-                       'show_add_btn':self.get_show_add_btn()
-                       })
+        return render(request,'stark/changelist.html',{'cl':cl})
 
     #添加页面
     def add_view(self, request, *args, **kwargs):

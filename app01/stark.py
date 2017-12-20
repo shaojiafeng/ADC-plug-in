@@ -32,6 +32,25 @@ class UserInfoConfig(v1.StarkConfig):
     show_search_form = True
     search_fields = ['name__contains', 'email__contains']
 
+    show_actions = True
+
+    def multi_del(self,request):
+        # print(request.POST)
+        pk_list = request.POST.getlist('pk')
+        # print(pk_list)
+        self.model_class.objects.filter(id__in=pk_list).delete()
+
+        return redirect("http://www.baidu.com")
+    multi_del.short_desc = "批量删除"
+
+    def multi_init(self,request):
+        pk_list = request.POST.getlist('pk')
+
+    multi_init.short_desc = "初始化"
+
+    actions = [multi_del,multi_init]
+
+
     #确定是否删除
     def delete_view(self, request, nid, *args, **kwargs):
         if request.method == 'GET':

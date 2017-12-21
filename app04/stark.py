@@ -48,9 +48,29 @@ class UserInfoConfig(v1.StarkConfig):
 
     comb_filter = [
         v1.FilterOption('gender', is_choice=True),
-        v1.FilterOption('depart', condition={'id__gt': 0}),
+        v1.FilterOption('depart'),
+        #v1.FilterOption('depart'),如果不加condition={'id__gt': 2}  ---condition 表示对显示的数据进行筛选
         v1.FilterOption('roles', True),
     ]
+
+
+
+
+    def multi_del(self,request):
+        # print(request.POST)
+        pk_list = request.POST.getlist('pk')
+        # print(pk_list)
+        self.model_class.objects.filter(id__in=pk_list).delete()
+
+
+    multi_del.short_desc = "批量删除"
+
+    def multi_init(self,request):
+        pk_list = request.POST.getlist('pk')
+
+    multi_init.short_desc = "初始化"
+
+    actions = [multi_del,multi_init]
 
 
 

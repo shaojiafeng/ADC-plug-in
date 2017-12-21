@@ -40,7 +40,7 @@ class UserInfoConfig(v1.StarkConfig):
         # print(pk_list)
         self.model_class.objects.filter(id__in=pk_list).delete()
 
-        return redirect("http://www.baidu.com")
+
     multi_del.short_desc = "批量删除"
 
     def multi_init(self,request):

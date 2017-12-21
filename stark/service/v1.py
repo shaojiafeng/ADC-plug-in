@@ -5,13 +5,14 @@ from django.urls import reverse
 from django.http import  QueryDict
 from django.db.models import Q
 import copy
+import json
 
 
 from app01 import models
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 
-# FilterOption 用于封装配置信息
+# FilterOption 用于封装组合搜索的配置信息（数据库字段，是否多选，是否是choice）
 class FilterOption(object):
     def __init__(self,field_name,multi=False,condition=None,is_choice=False):
         """
@@ -35,7 +36,12 @@ class FilterOption(object):
         return _field.choices
 
 
+
 class FilterRow(object):
+    # 生成器中返回可迭代对象FilterRow的对象，（FilterRow对象则是自己创建的，封装了组合搜索的一行数据）
+    #FilterRow生成按钮以及一系列的<a>标签
+
+
     def __init__(self,option,data,request):
         self.data = data
         self.option = option
@@ -48,12 +54,16 @@ class FilterRow(object):
         current_id_list = params.getlist(self.option.field_name) # [1,2,3]
 
         if self.option.field_name in params:
-            # del params[self.option.field_name]
+            #url中有这个条件，全部按钮应该是非active状态的
+            #此时要生成一个href，目的是去掉parmas中的此字段
+            # _parmas = copy.deepcopy(parmas)
+
             origin_list = params.pop(self.option.field_name)
             url = "{0}?{1}".format(self.request.path_info, params.urlencode())
             yield mark_safe('<a href="{0}">全部</a>'.format(url))
             params.setlist(self.option.field_name,origin_list)
         else:
+            #url中没有这个条件，全部按钮应该是active状态
             url = "{0}?{1}".format(self.request.path_info, params.urlencode())
             yield mark_safe('<a class="active" href="{0}">全部</a>'.format(url))
         # ( (1,男),(2,女)  )
@@ -93,7 +103,7 @@ class FilterRow(object):
                     yield mark_safe("<a href='{0}'>{1}</a>".format(url, text))
 
 
-
+#将列表页面的功能封装到此类中
 class ChangeList(object):
     def __init__(self,config,queryset):
         self.config = config
@@ -104,7 +114,7 @@ class ChangeList(object):
         self.show_add_btn = config.get_show_add_btn()
         self.actions = config.get_actions()
         self.show_actions = config.get_show_actions()
-        self.comb_filter = config.get_comb_filter()
+        self.comb_filter = config.get_comb_filter()  #构造方法中写了comb_filter
 
         #模糊关键字搜索
         self.show_search_form = config.get_show_search_form()
@@ -115,7 +125,7 @@ class ChangeList(object):
         current_page = self.request.GET.get('page', 1)
         total_count = queryset.count()
 
-        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=4,
+        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=2,
                               max_pager_count=5)
         self.page_obj = page_obj
 
@@ -170,8 +180,9 @@ class ChangeList(object):
         return new_data_list
 
 
+    #给前端进行循环显示数据用（生成器函数），-----生成器中返回可迭代对象FilterRow的对象，（FilterRow对象则是自己创建的）
     def gen_comb_filter(self):
-        #搜索显示筛选
+
 
         from django.db.models import ForeignKey,ManyToManyField
         for option in self.comb_filter:
@@ -191,7 +202,7 @@ class ChangeList(object):
 
 
 
-#StarkConfig类：用于为每一个类生成url的对应关系，并处理用户的请求
+#StarkConfig类：用于为每一个类生成url的对应关系，并处理用户的请求，处理增删改查的基类
 class StarkConfig(object):
 
     #1.定制列表页面显示的列
@@ -262,7 +273,7 @@ class StarkConfig(object):
 
 
     #4.关键字搜索
-    show_search_form = False
+    show_search_form = True
     def get_show_search_form(self):
         return self.show_search_form
 
@@ -285,7 +296,7 @@ class StarkConfig(object):
         return condition
 
     #5. actions定制
-    show_actions = False
+    show_actions = True
     def get_show_actions(self):
         return self.show_actions
 
@@ -378,8 +389,11 @@ class StarkConfig(object):
             action_func = getattr(self,func_name_str)
             ret = action_func(request)
             if ret:
+
                 return ret
 
+
+        #根据URL 传递的参数，对数据进行筛选
         comb_condition = {}
         option_list = self.get_comb_filter()
         for key in request.GET.keys():
@@ -395,6 +409,8 @@ class StarkConfig(object):
 
         #这里两个filter，前者是取到全部的值，后者是进行根据条件进行筛选，并去重
         queryset = self.model_class.objects.filter(self.get_search_condition()).filter(**comb_condition).distinct()
+
+
         cl = ChangeList(self,queryset)
 
         return render(request,'stark/changelist.html',{'cl':cl})
@@ -403,7 +419,7 @@ class StarkConfig(object):
     def add_view(self, request, *args, **kwargs):
 
         model_form_class=self.get_model_form_class()
-
+        _popbackid = request.GET.get('_popbackid')
         if request.method == "GET":
             form = model_form_class()
             return render(request,'stark/add_view.html',{'form':form})
@@ -411,9 +427,16 @@ class StarkConfig(object):
         else:
             form = model_form_class(request.POST)
             if form.is_valid():
-                form.save()
-                return redirect(self.get_list_url())
-
+                # form.save()
+                #数据库中创建数据
+                new_obj = form.save()
+                if _popbackid:
+                    #是popup请求
+                    #render一个页面，写自执行函数
+                    result = {'id':new_obj.pk,'text':str(new_obj),'popbackid':_popbackid}
+                    return render(request, 'stark/popup_response.html',{'json_result': json.dumps(result, ensure_ascii=False)})
+                else:
+                    return redirect(self.get_list_url())
             return render(request,'stark/add_view.html',{'form':form})
 
     #修改页面

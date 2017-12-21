@@ -37,7 +37,7 @@
 
 
     {% if cl.show_add_btn  %}
-    <a class="btn btn-primary" href="{{ cl.add_url }}">添加</a>
+    <a class="btn btn-primary" style="float: right;margin-top: 50px" href="{{ cl.add_url }}">添加</a>
     {% endif %}
 
         {% if cl.show_search_form %}
@@ -54,7 +54,7 @@
     <form method="post">
         {% csrf_token %}
         {% if cl.show_actions %}
-            <div class="form-group" style="float: right">
+            <div class="form-group">
                 <select name="list_action" class="form-control" style="display:inline-block;width: 200px;">
                     {% for item in cl.modify_actions %}
                         <option value="{{ item.name }}">{{ item.text }}</option>

@@ -21,12 +21,14 @@
 </form>
 <script>
     function popupCallback(dic) {
-        var op = document.createElement('option');
-        op.value = dic.id;
-        op.text = dic.text;
-        op.setAttribute('selected','selected');
-        document.getElementById(dic.popbackid).appendChild(op);
+        if(dic.status){
 
+            var op = document.createElement('option');
+            op.value = dic.id;
+            op.text = dic.text;
+            op.setAttribute('selected','selected');
+            document.getElementById(dic.popbackid).appendChild(op);
+        }
     }
     function popUp(url) {
         var popupPage = window.open(url, url, "status=1, height:200, width:300, toolbar=0, resizeable=0");

@@ -3,7 +3,7 @@ from . import models
 from django.utils.safestring import mark_safe
 from django.conf.urls import url
 from django.shortcuts import redirect,render,HttpResponse
-
+from django.forms import ModelForm
 
 
 
@@ -21,7 +21,10 @@ class DepartmentConfig(v1.StarkConfig):
 v1.site.register(models.Department,DepartmentConfig)
 
 
-
+# class UserInfoModelForm(ModelForm):
+#     class Meta:
+#         model = models.UserInfo
+#         fields = ["username","password"]
 
 class UserInfoConfig(v1.StarkConfig):
 
@@ -29,7 +32,6 @@ class UserInfoConfig(v1.StarkConfig):
     show_search_form = True
     search_fields = ['name__contains', 'email__contains',]
 
-    edit_link = ['name']
 
     list_display = [ 'name', 'username', 'email','depart',]
 
@@ -39,6 +41,10 @@ class UserInfoConfig(v1.StarkConfig):
 
     ]
 
+
+
+    # model_form_class = UserInfoModelForm
+
 v1.site.register(models.UserInfo,UserInfoConfig)
 
 
@@ -46,7 +52,7 @@ v1.site.register(models.UserInfo,UserInfoConfig)
 
 class CourseConfig(v1.StarkConfig):
     list_display = ['name']
-    edit_link = ['name']
+    # edit_link = ['name']
 
 v1.site.register(models.Course,CourseConfig)
 
@@ -67,6 +73,20 @@ class ClassListConfig(v1.StarkConfig):
 
         return "%s(%s期)" %(obj.course.name,obj.semester,)
 
+
+    def display_teachers(self,obj=None,is_header=False):
+        if is_header:
+            return '任课老师'
+
+        html = []
+        teacher_list = obj.teachers.all()
+        for tea in teacher_list:
+            html.append(tea.name)
+
+        return "".join(html)
+
+
+
     def num(self,obj=None,is_header=False):
         if is_header:
             return '人数'
@@ -74,7 +94,7 @@ class ClassListConfig(v1.StarkConfig):
         return 50
 
 
-    list_display = ['school',course_semester,'price','start_date','graduate_date',num,'tutor']
+    list_display = ['school',course_semester,'price','start_date','graduate_date',num,display_teachers,'tutor']
     edit_link = [course_semester,]
 
 v1.site.register(models.ClassList,ClassListConfig)
@@ -172,3 +192,68 @@ v1.site.register(models.ConsultRecord,ConsultRecordConfig)
 
 
 
+
+
+
+
+class PaymentRecordConfig(v1.StarkConfig):
+    # def pay_type_choices(self,obj=None,is_header=False):
+    #     if is_header:
+    #         return '缴费类型选择'
+    #     return obj.get_pay_type_choices_display
+
+
+
+    list_display = ['customer','class_list','consultant']
+
+v1.site.register(models.PaymentRecord,PaymentRecordConfig)
+
+
+
+
+class StudentConfig(v1.StarkConfig):
+
+
+    list_display = ['customer','username','emergency_contract','class_list','company','location','position','salary','welfare','date']
+    edit_link = ['class_list']
+
+v1.site.register(models.Student,StudentConfig)
+
+
+
+
+class CourseRecordConfig(v1.StarkConfig):
+
+    list_display = ['class_obj','day_num',]
+
+v1.site.register(models.CourseRecord,CourseRecordConfig)
+
+
+
+
+class StudyRecordConfig(v1.StarkConfig):
+    def course_record(self,obj=None,is_header=False):
+        if is_header:
+            return '第几天课程'
+        return obj.get_course_record_display()
+
+    def student(self,obj=None,is_header=False):
+        if is_header:
+            return '学员'
+        return obj.get_student_display()
+
+    def record(self,obj=None,is_header=False):
+        if is_header:
+            return '上课记录'
+        return obj.get_record_display()
+
+    def score(self,obj=None,is_header=False):
+        if is_header:
+            return '本节成绩'
+        return obj.get_score_display()
+
+
+
+
+    list_display = [course_record,student,record,score,'date']
+v1.site.register(models.StudyRecord,StudyRecordConfig)

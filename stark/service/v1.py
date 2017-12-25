@@ -37,7 +37,7 @@ class FilterOption(object):
         return _field.choices
 
 
-
+#FilterRow生成按钮以及一系列的<a>标签
 class FilterRow(object):
     # 生成器中返回可迭代对象FilterRow的对象，（FilterRow对象则是自己创建的，封装了组合搜索的一行数据）
     #FilterRow生成按钮以及一系列的<a>标签
@@ -252,7 +252,7 @@ class StarkConfig(object):
         data = []
         if self.list_display:
             data.extend(self.list_display)
-            #data.append(StarkConfig.edit)
+            data.append(StarkConfig.edit)
             data.append(StarkConfig.delete)
             data.insert(0,StarkConfig.checkbox)
 
@@ -285,14 +285,14 @@ class StarkConfig(object):
         #ModelForm提供的错误信息显示
         from django.forms import ModelForm
         #方式一 通过自己写
-        class TestModelForm(ModelForm):
-            class Meta:
-                model = self.model_class
-                fields = "__all__"
+        # class TestModelForm(ModelForm):
+        #     class Meta:
+        #         model = self.model_class
+        #         fields = "__all__"
 
         #方式二 通过type创建
-        # meta = type('Meta', (object,), {'model': self.model_class, 'fields': '__all__'})
-        # TestModelForm = type('TestModelForm', (ModelForm,), {'Meta': meta})
+        meta = type('Meta', (object,), {'model': self.model_class, 'fields': '__all__'})
+        TestModelForm = type('TestModelForm', (ModelForm,), {'Meta': meta})
 
         return TestModelForm
 
@@ -453,7 +453,7 @@ class StarkConfig(object):
         _popbackid = request.GET.get('_popbackid')
         if request.method == "GET":
             form = model_form_class()
-            return render(request,'stark/add_view.html',{'form':form})
+            return render(request,'stark/add_view.html',{'form':form,'config':self})
 
         else:
             form = model_form_class(request.POST)
@@ -463,11 +463,31 @@ class StarkConfig(object):
                 if _popbackid:
                     #是popup请求
                     #render一个页面，写自执行函数
-                    result = {'id':new_obj.pk,'text':str(new_obj),'popbackid':_popbackid}
+
+                    from django.db.models.fields.reverse_related import ManyToOneRel
+                    result = {'status':False,'id':None,'text':None,'popbackid':_popbackid}
+
+                    model_name=request.GET.get('model_name')
+                    related_name = request.GET.get('related_name')
+                    for related_object in new_obj._meta.related_objects:
+                        _model_name = related_object.field.model._meta.model_name
+                        if(type(related_object)==ManyToOneRel):
+                            _related_name = related_object.related_name
+                            _field_name = related_object.field_name
+                            _limit_choices_to = related_object.limit_choices_to
+                            if model_name == _model_name and related_name == str(_related_name):
+                                is_exists = self.model_class.objects.filter(**_limit_choices_to,pk=new_obj.pk).exists()
+                                if is_exists:
+
+                                    result['status'] = True
+                                    result['text'] =  str(new_obj)
+                                    result['id'] = getattr(new_obj,_field_name)
+                                    return render(request, 'stark/popup_response.html',{'json_result': json.dumps(result, ensure_ascii=False)})
+
                     return render(request, 'stark/popup_response.html',{'json_result': json.dumps(result, ensure_ascii=False)})
                 else:
                     return redirect(self.get_list_url())
-            return render(request,'stark/add_view.html',{'form':form})
+            return render(request,'stark/add_view.html',{'form':form,'config':self})
 
     #修改页面
     def change_view(self, request, nid, *args, **kwargs):
@@ -481,7 +501,7 @@ class StarkConfig(object):
         #如果是get请求，则应该显示标签 + 默认值
         if request.method == 'GET':
             form =  model_form_class(instance=obj)
-            return render(request,'stark/change_view.html',{'form':form})
+            return render(request,'stark/change_view.html',{'form':form,"config":self})
         else:
             #instanc=obj  ---对那个对象，拿条数据进行修改
             form = model_form_class(instance=obj,data=request.POST)
@@ -491,7 +511,7 @@ class StarkConfig(object):
                 list_url = "%s?%s" %(self.get_list_url(),list_query_str,)
 
                 return redirect(list_url)
-            return render(request,'stark/change_view.html',{'form':form})
+            return render(request,'stark/change_view.html',{'form':form,"config":self})
 
 
         #return HttpResponse('修改')

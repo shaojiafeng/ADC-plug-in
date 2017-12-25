@@ -24,6 +24,8 @@
 <body>
 <div class="container">
     <h1>列表页面</h1>
+
+{% if cl.show_comb_filter %}
     <div class="list-filter">
         {% for filter_row in cl.gen_comb_filter %}
             <div>
@@ -33,7 +35,7 @@
             </div>
         {% endfor %}
     </div>
-
+{% endif %}
 
 
     {% if cl.show_add_btn  %}

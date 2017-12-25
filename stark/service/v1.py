@@ -27,6 +27,7 @@ class FilterOption(object):
         self.is_choice = is_choice
         self.condition = condition
 
+
     def get_queryset(self,_field):
         if self.condition:
             return _field.rel.to.objects.filter(**self.condition)
@@ -115,6 +116,9 @@ class ChangeList(object):
         self.actions = config.get_actions()
         self.show_actions = config.get_show_actions()
         self.comb_filter = config.get_comb_filter()  #构造方法中写了comb_filter
+        self.show_comb_filter = config.get_show_comb_filter()
+        self.edit_link = config.get_edit_link()
+
 
         #模糊关键字搜索
         self.show_search_form = config.get_show_search_form()
@@ -125,8 +129,8 @@ class ChangeList(object):
         current_page = self.request.GET.get('page', 1)
         total_count = queryset.count()
 
-        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=2,
-                              max_pager_count=5)
+        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=4,
+                              max_pager_count=3)
         self.page_obj = page_obj
 
         self.data_list = queryset[page_obj.start:page_obj.end]
@@ -158,6 +162,7 @@ class ChangeList(object):
                 verbose_name = field_name(self.config,is_header=True)
 
             result.append(verbose_name)
+
         return result
 
     def body_list(self):
@@ -170,11 +175,17 @@ class ChangeList(object):
 
             temp = []
             for field_name in self.list_display:
-                if isinstance(field_name, str):
+                if isinstance(field_name, str):   # 判断实例是否是这个类或者object是变量
                     val = getattr(row, field_name)
+
                 else:
                     val = field_name(self.config, row)
+
+                if field_name in self.edit_link:
+                    val = self.edit_link_tag(row.pk,val)
+
                 temp.append(val)
+
             new_data_list.append(temp)
 
         return new_data_list
@@ -198,8 +209,13 @@ class ChangeList(object):
 
             #可迭代对象
             yield row
-
-
+    #自定制编辑
+    def edit_link_tag(self,pk,text):
+        query_str = self.request.GET.urlencode()  # page=2&nid=1
+        params = QueryDict(mutable=True)
+        params[self.config._query_param_key] = query_str
+        return mark_safe('<a href="%s?%s">%s</a>' % (
+        self.config.get_change_url(pk), params.urlencode(), text,))  # /stark/app01/userinfo/
 
 
 #StarkConfig类：用于为每一个类生成url的对应关系，并处理用户的请求，处理增删改查的基类
@@ -209,7 +225,7 @@ class StarkConfig(object):
     def checkbox(self, obj=None, is_header=False):
         if is_header:
             return '选择'
-        return mark_safe('<input type="checkbox" name="pk" value="%s" />' % (obj.id))
+        return mark_safe('<input type="checkbox" name="pk" value="%s"/>' % (obj.pk,))
 
     def edit(self, obj=None, is_header=False):
         if is_header:
@@ -221,14 +237,14 @@ class StarkConfig(object):
             params = QueryDict(mutable=True)
             params[self._query_param_key] = query_str
 
-            return mark_safe('<a href="%s?%s">编辑</a>' % (self.get_change_url(obj.id),params.urlencode(),))
-        return mark_safe('<a href="%s">编辑</a>' % (self.get_change_url(obj.id),))
+            return mark_safe('<a href="%s?%s">编辑</a>' % (self.get_change_url(obj.pk),params.urlencode(),))
+        return mark_safe('<a href="%s">编辑</a>' % (self.get_change_url(obj.pk),))
 
 
     def delete(self, obj=None, is_header=False):
         if is_header:
             return '删除'
-        return mark_safe('<a href="%s">删除</a>' % (self.get_delete_url(obj.id),))
+        return mark_safe('<a href="%s">删除</a>' % (self.get_delete_url(obj.pk),))
 
     list_display = []
 
@@ -236,11 +252,21 @@ class StarkConfig(object):
         data = []
         if self.list_display:
             data.extend(self.list_display)
-            data.append(StarkConfig.edit)
+            #data.append(StarkConfig.edit)
             data.append(StarkConfig.delete)
             data.insert(0,StarkConfig.checkbox)
 
         return data
+
+    #第二种种编辑方式
+    edit_link = []
+    def get_edit_link(self):
+        result = []
+        if self.edit_link:
+            result.extend(self.edit_link)
+        return result
+
+
 
 
     #2.显示是否添加按钮
@@ -296,7 +322,7 @@ class StarkConfig(object):
         return condition
 
     #5. actions定制
-    show_actions = True
+    show_actions = False
     def get_show_actions(self):
         return self.show_actions
 
@@ -315,6 +341,11 @@ class StarkConfig(object):
             result.extend(self.comb_filter)
 
         return result
+
+    #显示跟进记录表中的组合搜索
+    show_comb_filter = False
+    def get_show_comb_filter(self):
+        return self.show_comb_filter
 
 
     def __init__(self,model_class,site):
@@ -427,7 +458,6 @@ class StarkConfig(object):
         else:
             form = model_form_class(request.POST)
             if form.is_valid():
-                # form.save()
                 #数据库中创建数据
                 new_obj = form.save()
                 if _popbackid:

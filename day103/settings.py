@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'app02.apps.App02Config',
     'app03.apps.App03Config',
     'app04.apps.App04Config',
+    'crm.apps.CrmConfig',
 ]
 
 MIDDLEWARE = [

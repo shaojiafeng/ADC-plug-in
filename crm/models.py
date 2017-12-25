@@ -10,7 +10,7 @@ class Department(models.Model):
     销售      1001
     """
     title = models.CharField(verbose_name='部门名称', max_length=16)
-    code = models.IntegerField(verbose_name='部门编号',unique=True,null=False)
+    code = models.IntegerField(verbose_name='部门编号',unique=True,null=False,primary_key=True)
 
     def __str__(self):
         return self.title

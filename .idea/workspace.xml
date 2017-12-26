@@ -5,9 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/stark.py" afterPath="$PROJECT_DIR$/crm/stark.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stark/templates/stark/add_view.html" afterPath="$PROJECT_DIR$/stark/templates/stark/add_view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stark/templates/stark/change_view.html" afterPath="$PROJECT_DIR$/stark/templates/stark/change_view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stark/templates/stark/changelist.html" afterPath="$PROJECT_DIR$/stark/templates/stark/changelist.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="stark.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crm/stark.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="261" column="15" lean-forward="true" selection-start-line="261" selection-start-column="15" selection-end-line="261" selection-end-column="15" />
+            <state relative-caret-position="345">
+              <caret line="293" column="86" lean-forward="false" selection-start-line="293" selection-start-column="86" selection-end-line="293" selection-end-column="86" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
                 <element signature="e#305#334#0" expanded="false" />
@@ -60,8 +57,9 @@
                 <element signature="e#3666#4010#0" expanded="false" />
                 <element signature="e#4062#4307#0" expanded="false" />
                 <element signature="e#4415#4925#0" expanded="false" />
-                <element signature="e#6704#7322#0" expanded="false" />
-                <marker date="1514276309714" expanded="false" signature="5910:6419" ph="..." />
+                <element signature="e#5040#5259#0" expanded="false" />
+                <element signature="e#7128#7176#0" expanded="false" />
+                <marker date="1514280295040" expanded="false" signature="6106:6615" ph="..." />
               </folding>
             </state>
           </provider>
@@ -71,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1330">
-              <caret line="411" column="0" lean-forward="true" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+              <caret line="411" column="0" lean-forward="false" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
                 <element signature="e#442#1078#0" expanded="false" />
@@ -114,8 +112,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crm/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2023">
-              <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+            <state relative-caret-position="314">
+              <caret line="261" column="35" lean-forward="false" selection-start-line="261" selection-start-column="35" selection-end-line="261" selection-end-column="35" />
               <folding>
                 <element signature="e#95#355#0" expanded="false" />
                 <element signature="e#915#1134#0" expanded="false" />
@@ -191,11 +189,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="165" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="207" />
     <option name="y" value="23" />
     <option name="width" value="1623" />
-    <option name="height" value="980" />
+    <option name="height" value="988" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -350,16 +348,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="165" y="23" width="1623" height="980" extended-state="1" />
+    <frame x="207" y="23" width="1623" height="988" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11511254" sideWeight="0.4950495" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16258064" sideWeight="0.50289017" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1511254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1363344" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18258767" sideWeight="0.49710983" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18083832" sideWeight="0.49710983" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27427185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12860727" sideWeight="0.5049505" order="2" side_tool="true" content_ui="tabs" />
@@ -382,7 +380,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -711,23 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crm/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2023">
-          <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-          <folding>
-            <element signature="e#95#355#0" expanded="false" />
-            <element signature="e#915#1134#0" expanded="false" />
-            <element signature="e#1169#1371#0" expanded="false" />
-            <element signature="e#5134#5416#0" expanded="false" />
-            <element signature="e#5458#6314#0" expanded="false" />
-            <element signature="e#6350#7442#0" expanded="false" />
-            <element signature="e#7483#8426#0" expanded="false" />
-            <element signature="e#8952#9333#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stark/templates/stark/change_view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -747,7 +728,7 @@
     <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1330">
-          <caret line="411" column="0" lean-forward="true" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+          <caret line="411" column="0" lean-forward="false" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
             <element signature="e#442#1078#0" expanded="false" />
@@ -791,10 +772,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/crm/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="261" column="35" lean-forward="false" selection-start-line="261" selection-start-column="35" selection-end-line="261" selection-end-column="35" />
+          <folding>
+            <element signature="e#95#355#0" expanded="false" />
+            <element signature="e#915#1134#0" expanded="false" />
+            <element signature="e#1169#1371#0" expanded="false" />
+            <element signature="e#5134#5416#0" expanded="false" />
+            <element signature="e#5458#6314#0" expanded="false" />
+            <element signature="e#6350#7442#0" expanded="false" />
+            <element signature="e#7483#8426#0" expanded="false" />
+            <element signature="e#8952#9333#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crm/stark.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="261" column="15" lean-forward="true" selection-start-line="261" selection-start-column="15" selection-end-line="261" selection-end-column="15" />
+        <state relative-caret-position="345">
+          <caret line="293" column="86" lean-forward="false" selection-start-line="293" selection-start-column="86" selection-end-line="293" selection-end-column="86" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
             <element signature="e#305#334#0" expanded="false" />
@@ -802,8 +800,9 @@
             <element signature="e#3666#4010#0" expanded="false" />
             <element signature="e#4062#4307#0" expanded="false" />
             <element signature="e#4415#4925#0" expanded="false" />
-            <element signature="e#6704#7322#0" expanded="false" />
-            <marker date="1514276309714" expanded="false" signature="5910:6419" ph="..." />
+            <element signature="e#5040#5259#0" expanded="false" />
+            <element signature="e#7128#7176#0" expanded="false" />
+            <marker date="1514280295040" expanded="false" signature="6106:6615" ph="..." />
           </folding>
         </state>
       </provider>

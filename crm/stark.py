@@ -227,7 +227,12 @@ v1.site.register(models.Student,StudentConfig)
 #上课记录
 class CourseRecordConfig(v1.StarkConfig):
 
-    list_display = ['class_obj','day_num',]
+    def kaoqin(self,obj=None,is_header=False):
+        if is_header:
+            return '考勤'
+        return mark_safe("<a href='/stark/crm/studyrecord/?course_record=%s'>考勤管理</a>" %obj.pk)
+
+    list_display = ['class_obj','day_num',kaoqin]
 
     def multi_init(self,request):
         """
@@ -254,6 +259,7 @@ class CourseRecordConfig(v1.StarkConfig):
                 bulk_list.append(models.StudyRecord(student=student,course_record=record))
             models.StudyRecord.objects.bulk_create(bulk_list)
 
+
         #actions可以有返回值
         #return redirect('http://www.baidu.com')
 
@@ -270,29 +276,52 @@ v1.site.register(models.CourseRecord,CourseRecordConfig)
 
 
 
+#学生学习记录
 class StudyRecordConfig(v1.StarkConfig):
-    def course_record(self,obj=None,is_header=False):
-        if is_header:
-            return '第几天课程'
-        return obj.get_course_record_display()
 
-    def student(self,obj=None,is_header=False):
+    def display_record(self,obj=None,is_header=False):
         if is_header:
-            return '学员'
-        return obj.get_student_display()
-
-    def record(self,obj=None,is_header=False):
-        if is_header:
-            return '上课记录'
+            return '出勤'
         return obj.get_record_display()
 
-    def score(self,obj=None,is_header=False):
-        if is_header:
-            return '本节成绩'
-        return obj.get_score_display()
+    list_display = ['course_record','student',display_record]
+    comb_filter = [
+        v1.FilterOption('course_record')
+    ]
+
+    def actions_checked(self,request):
+        pk_list = request.POST.getlist('pk')
+        models.StudyRecord.objects.filter(id__in=pk_list).update(record='checked2a@W@1')
+    actions_checked.short_desc = '签到'
 
 
+    def actions_vacate(self,request):
+        pk_list = request.POST.getlist('pk')
+        models.StudyRecord.objects.filter(id__in=pk_list).update(record='vacate')
+    actions_vacate.short_desc = '请假'
 
 
-    list_display = [course_record,student,record,score,'date']
+    def actions_late(self,request):
+        pk_list = request.POST.getlist('pk')
+        models.StudyRecord.objects.filter(id__in=pk_list).update(record='late')
+    actions_late.short_desc = '迟到'
+
+
+    def actions_noshow(self,request):
+        pk_list=request.POST.getlist('pk')
+        models.StudyRecord.objects.filter(id__in=pk_list).update(record='noshow')
+    actions_noshow.short_desc = '缺勤'
+
+
+    def actions_leave_early(self,request):
+        pk_list = request.POST.getlist('pk')
+        models.StudyRecord.objects.filter(id__in=pk_list).update(record='leave_early')
+    actions_leave_early.short_desc = '早退'
+
+
+    actions = [actions_checked,actions_vacate,actions_late,actions_noshow,actions_leave_early]
+    show_actions = True
+
+    show_add_btn = False
+
 v1.site.register(models.StudyRecord,StudyRecordConfig)

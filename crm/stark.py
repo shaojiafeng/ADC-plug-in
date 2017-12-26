@@ -3,6 +3,7 @@ from . import models
 from django.utils.safestring import mark_safe
 from django.conf.urls import url
 from django.shortcuts import redirect,render,HttpResponse
+
 from django.forms import ModelForm
 
 
@@ -217,22 +218,89 @@ class StudentConfig(v1.StarkConfig):
 
 
     list_display = ['username','emergency_contract','date']
-    edit_link = ['class_list']
+
 
 v1.site.register(models.Student,StudentConfig)
 
 
 
 
-#上课记录
+#老师上课记录
 class CourseRecordConfig(v1.StarkConfig):
+
+    def extra_url(self):
+        app_model_name = (self.model_class._meta.app_label, self.model_class._meta.model_name,)
+        url_list = [
+            url(r'^(\d+)/score_list/$', self.wrap(self.score_list), name="%s_%s_score_list" % app_model_name),
+        ]
+        return url_list
+
+    def score_list(self,request,record_id):
+        """
+        自定义录入
+        :param request:
+        :param record_id:老师上课记录ID
+        :return:
+        """
+        if request.method == "GET":
+            # 方式一
+            # study_record_list = models.StudyRecord.objects.filter(course_record_id=record_id)
+            # score_choices = models.StudyRecord.score_choices
+            # return render(request,'score_list.html',{'study_record_list':study_record_list,'score_choices':score_choices})
+            # 方式二
+            from django.forms import Form
+            from django.forms import fields
+            from django.forms import widgets
+
+            # class TempForm(Form):
+                #此方法不能动态生成
+            #     score = fields.ChoiceField(choices=models.StudyRecord.score_choices)
+            #     homework_note = fields.CharField(widget=widgets.Textarea())
+            data = []
+            study_record_list = models.StudyRecord.objects.filter(course_record_id=record_id)
+            for obj in study_record_list:
+                # obj是对象
+                #自己创建Form，可以动态生成字典形式的数据
+                TempForm = type('TempForm',(Form,),{
+                    'score_%s' %obj.pk : fields.ChoiceField(choices=models.StudyRecord.score_choices),
+                    'homework_note_%s' %obj.pk : fields.CharField(widget=widgets.Textarea())
+                })
+                data.append({'obj':obj,'form':TempForm(initial={'score_%s' %obj.pk:obj.score,'homework_note_%s' %obj.pk:obj.homework_note})})
+            return render(request, 'score_list.html',{'data': data})
+        else:
+            data_dict = {}
+            for key,value in request.POST.items():
+                if key == "csrfmiddlewaretoken":
+                    continue
+                name,nid = key.rsplit('_',1)
+                if nid in data_dict:
+                    data_dict[nid][name] = value
+                else:
+                    data_dict[nid] = {name:value}
+
+            for nid,update_dict in data_dict.items():
+                models.StudyRecord.objects.filter(id=nid).update(**update_dict)
+
+            return redirect(request.path_info)
+
+
 
     def kaoqin(self,obj=None,is_header=False):
         if is_header:
             return '考勤'
         return mark_safe("<a href='/stark/crm/studyrecord/?course_record=%s'>考勤管理</a>" %obj.pk)
 
-    list_display = ['class_obj','day_num',kaoqin]
+    def display_score_list(self,obj=None,is_header=False):
+        if is_header:
+            return '成绩录入'
+
+        from django.urls import reverse
+        rurl = reverse("stark:crm_courserecord_score_list",args=(obj.pk,))
+
+        return mark_safe("<a href='%s'>成绩录入</a>" %rurl)
+
+
+    list_display = ['class_obj','day_num',kaoqin,display_score_list]
 
     def multi_init(self,request):
         """
@@ -265,9 +333,7 @@ class CourseRecordConfig(v1.StarkConfig):
 
 
     multi_init.short_desc = '学生初始化'
-    actions = [
-        multi_init
-    ]
+    actions = [multi_init]
     show_actions = True
 
 

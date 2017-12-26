@@ -442,6 +442,7 @@ class StarkConfig(object):
         queryset = self.model_class.objects.filter(self.get_search_condition()).filter(**comb_condition).distinct()
 
 
+
         cl = ChangeList(self,queryset)
 
         return render(request,'stark/changelist.html',{'cl':cl})

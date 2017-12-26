@@ -35,6 +35,8 @@ class UserInfoConfig(v1.StarkConfig):
 
     list_display = [ 'name', 'username', 'email','depart',]
 
+    edit_link = ['name']
+
     comb_filter = [
 
         v1.FilterOption('depart'),
@@ -43,7 +45,7 @@ class UserInfoConfig(v1.StarkConfig):
 
 
 
-    # model_form_class = UserInfoModelForm
+
 
 v1.site.register(models.UserInfo,UserInfoConfig)
 
@@ -52,7 +54,7 @@ v1.site.register(models.UserInfo,UserInfoConfig)
 
 class CourseConfig(v1.StarkConfig):
     list_display = ['name']
-    # edit_link = ['name']
+    edit_link = ['name']
 
 v1.site.register(models.Course,CourseConfig)
 
@@ -168,9 +170,9 @@ class CustomerConfig(v1.StarkConfig):
 v1.site.register(models.Customer,CustomerConfig)
 
 
-
+# 跟进记录
 class ConsultRecordConfig(v1.StarkConfig):
-    #跟进记录
+
     list_display = ['customer','consultant','date']
 
     comb_filter = [
@@ -214,7 +216,7 @@ v1.site.register(models.PaymentRecord,PaymentRecordConfig)
 class StudentConfig(v1.StarkConfig):
 
 
-    list_display = ['customer','username','emergency_contract','class_list','company','location','position','salary','welfare','date']
+    list_display = ['username','emergency_contract','date']
     edit_link = ['class_list']
 
 v1.site.register(models.Student,StudentConfig)
@@ -222,9 +224,46 @@ v1.site.register(models.Student,StudentConfig)
 
 
 
+#上课记录
 class CourseRecordConfig(v1.StarkConfig):
 
     list_display = ['class_obj','day_num',]
+
+    def multi_init(self,request):
+        """
+        自定义执行批量初始化方法
+        :param request:
+        :return:
+        """
+
+        #拿到上课记录的id列表
+        pk_list=request.POST.getlist('pk')
+
+        #上课记录的对象
+        record_list = models.CourseRecord.objects.filter(id__in=pk_list)
+        for record in record_list:
+            #record.class_obj  关联的班级
+            exists=models.StudyRecord.objects.filter(course_record=record).exists()
+            if exists:
+                continue
+
+            student_list = models.Student.objects.filter(class_list=record.class_obj)
+            bulk_list = []
+            for student in student_list:
+                #为每个学生创建一天的学习记录
+                bulk_list.append(models.StudyRecord(student=student,course_record=record))
+            models.StudyRecord.objects.bulk_create(bulk_list)
+
+        #actions可以有返回值
+        #return redirect('http://www.baidu.com')
+
+
+    multi_init.short_desc = '学生初始化'
+    actions = [
+        multi_init
+    ]
+    show_actions = True
+
 
 v1.site.register(models.CourseRecord,CourseRecordConfig)
 

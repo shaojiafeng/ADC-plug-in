@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" />
+    <style>
+        .container{
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>qq</th>
+                    <th>姓名</th>
+                    <th>抢单</th>
+                </tr>
+                </thead>
+
+        <tbody>
+            {% for row in customer_list %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.qq }}</td>
+                <td>{{ row.name }}</td>
+                <td><a href="/stark/crm/customer/{{ row.id }}/competition/">抢单</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

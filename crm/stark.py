@@ -104,69 +104,7 @@ v1.site.register(models.ClassList,ClassListConfig)
 
 
 
-class CustomerConfig(v1.StarkConfig):
-    def display_gender(self,obj=None,is_header=False):
-        if is_header:
-            return '性别'
-        return obj.get_gender_display
-
-
-    def display_education(self,obj=None,is_header=False):
-        if is_header:
-            return '学历'
-        return obj.get_education_display
-
-    def display_course(self,obj=None,is_header=False):
-        if is_header:
-            return '咨询课程'
-        course_list = obj.course.all()
-        html = []
-        for item in course_list:
-            # temp = "<a href='/stark/crm/customer/%s/%s/dc'>X</a>"%(obj.pk,item.pk,item.name)
-            #href  中，第一个%s----obj.pk（当前的课程id），，，，第二个%s----item.pk(咨询课程的id)
-
-            temp = "<a style='display:inline-block;padding:3px 5px;border:1px solid blue;margin:2px;' href='/stark/crm/customer/%s/%s/dc/'>%s X</a>" % (obj.pk, item.pk, item.name)
-
-            html.append(temp)
-
-        return mark_safe(" ".join(html))
-
-
-    def display_status(self,obj=None,is_header=False):
-        if is_header:
-            return '状态'
-        return obj.get_status_display()
-
-    def record(self,obj=None,is_header=False):
-        if is_header:
-            return '跟进记录'
-        return mark_safe("<a href='/stark/crm/consultrecord/?customer=%s'>查看跟进记录</a>" %(obj.pk))
-
-    list_display = ['qq', 'name', display_gender, display_education,display_course,display_status,record]
-    edit_link = ['qq']
-
-
-    def delete_course(self,request,customer_id,course_id):
-        """
-               删除当前用户感兴趣的课程
-               :param request:
-               :param customer_id:
-               :param course_id:
-               :return:
-               """
-        customer_obj = self.model_class.objects.filter(pk=customer_id).first()
-        customer_obj.course.remove(course_id)
-
-        return redirect(self.get_list_url())
-
-    #删除咨询课程的小标签
-    def extra_url(self):
-
-        app_model_name = (self.model_class._meta.app_label, self.model_class._meta.model_name,)
-        patterns = [
-            url(r'^(\d+)/(\d+)/dc/$', self.wrap(self.delete_course), name="%s_%s_dc" %app_model_name),
-        ]
-        return patterns
+from crm.configs.customer import CustomerConfig
 
 v1.site.register(models.Customer,CustomerConfig)
 
@@ -214,10 +152,7 @@ v1.site.register(models.PaymentRecord,PaymentRecordConfig)
 
 
 
-class StudentConfig(v1.StarkConfig):
-
-
-    list_display = ['username','emergency_contract','date']
+from crm.configs.student import StudentConfig
 
 
 v1.site.register(models.Student,StudentConfig)
@@ -282,7 +217,6 @@ class CourseRecordConfig(v1.StarkConfig):
                 models.StudyRecord.objects.filter(id=nid).update(**update_dict)
 
             return redirect(request.path_info)
-
 
 
     def kaoqin(self,obj=None,is_header=False):

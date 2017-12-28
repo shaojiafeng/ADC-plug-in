@@ -129,7 +129,7 @@ class ChangeList(object):
         current_page = self.request.GET.get('page', 1)
         total_count = queryset.count()
 
-        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=4,
+        page_obj = Pagination(current_page, total_count, self.request.path_info, self.request.GET, per_page_count=8,
                               max_pager_count=3)
         self.page_obj = page_obj
 
@@ -348,6 +348,18 @@ class StarkConfig(object):
         return self.show_comb_filter
 
 
+    #7. 排序
+    order_by = []
+    def get_order_by(self):
+        result = []
+        result.extend(self.order_by)
+        return result
+
+
+
+
+
+
     def __init__(self,model_class,site):
         self.model_class = model_class
         self.site = site
@@ -439,7 +451,7 @@ class StarkConfig(object):
                 comb_condition["%s__in" %key] = value_list
 
         #这里两个filter，前者是取到全部的值，后者是进行根据条件进行筛选，并去重
-        queryset = self.model_class.objects.filter(self.get_search_condition()).filter(**comb_condition).distinct()
+        queryset = self.model_class.objects.filter(self.get_search_condition()).filter(**comb_condition).order_by(*self.get_order_by()).distinct()
 
 
 

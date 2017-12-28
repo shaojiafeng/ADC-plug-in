@@ -10,7 +10,7 @@ class Pagination(object):
     """
     自定义分页
     """
-    def __init__(self, current_page, total_count, base_url,params, per_page_count=4, max_pager_count=11):
+    def __init__(self, current_page, total_count, base_url,params, per_page_count=8, max_pager_count=11):
         try:
             current_page = int(current_page)
         except Exception as e:

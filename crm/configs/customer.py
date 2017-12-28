@@ -19,6 +19,7 @@ class SingleModelForm(ModelForm):
 
 
 class CustomerConfig(v1.StarkConfig):
+    order_by = ['-status']
     def display_gender(self, obj=None, is_header=False):
         if is_header:
             return '性别'
@@ -55,7 +56,7 @@ class CustomerConfig(v1.StarkConfig):
             return '跟进记录'
         return mark_safe("<a href='/stark/crm/consultrecord/?customer=%s'>查看跟进记录</a>" % (obj.pk))
 
-    list_display = ['qq', 'name', display_gender, display_education, display_course, display_status, record]
+    list_display = ['qq', 'name', display_gender, display_education, display_course,'consultant', display_status, record]
     edit_link = ['qq']
 
     # 公共资源

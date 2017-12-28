@@ -1,4 +1,4 @@
-.form-horizontal input[type="text"],input[type='email'],input[type='password'],input[type='checkbox'],input[type='number'],select,textarea{
+.form-horizontal input[type="text"],input[type='email'],input[type='password'],input[type='number'],select,textarea{
             display: block;
             width: 100%;
             height: 34px;

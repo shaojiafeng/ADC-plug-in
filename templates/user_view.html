@@ -1,26 +1,23 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-      <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" />
-</head>
-<body>
+{% extends 'stark/layout.html' %}
 
 
-    <div class="container">
-        <div class="row">
-
-                <ul>
+{% block body %}
+    <h1>我的客户</h1>
+    <table class="table table-bordered">
+        <thead>
+                <tr>
+                    <td>QQ</td>
+                    <td>姓名</td>
+                </tr>
+        </thead>
+        <tbody>
                 {% for row in customers %}
-                    <li>{{ row.customer.qq }} - {{ row.customer.name }} - </li>
+                    <tr>
+                        <td>{{ row.customer.qq }}</td>
+                        <td>{{row.customer.name }}</td>
+                    </tr>
                 {% endfor %}
-                </ul>
+        </tbody>
+    </table>
 
-        </div>
-    </div>
-
-
-</body>
-</html>
+{% endblock %}

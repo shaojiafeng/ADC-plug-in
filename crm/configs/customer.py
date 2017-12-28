@@ -6,6 +6,9 @@ from django.shortcuts import HttpResponse,redirect,render
 from crm import models
 from django.db.models import Q
 from django.forms import ModelForm
+from django.db import transaction
+from utils import message
+
 
 from stark.service import v1
 
@@ -162,30 +165,53 @@ class CustomerConfig(v1.StarkConfig):
 
         return HttpResponse('抢单成功')
 
+
     def single_view(self,request):
         """
         单条录入客户信息
         :param request:
         :return:
         """
+
         if request.method == "GET":
             form = SingleModelForm()
             return render(request,'single_view.html',{'form':form})
-
         else:
-            from xxxxxx import XXX
+            """单条导入，request.POST所有导入的数据
+              一、数据校验
+              二、获取销售ID
+              三、写入数据库
+            """
             form = SingleModelForm(request.POST)
-
+            # 数据校验
             if form.is_valid():
-                print(form.cleaned_data)
-                sale_id = XXX.get_sale_id()
-                """客户表新增数据：
-                    - 获取该分配的课程顾问id
-                    - 当前时间
-                 客户分配表中新增数据
-                    - 获取新创建的客户ID
-                    - 顾问ID
-                """
+                from xxxxxx import AutoSale
+                ctime = datetime.datetime.now().date()
+
+                # 获取销售ID
+                sale_id = AutoSale.get_sale_id()
+                if not sale_id:
+                    return HttpResponse("无销售顾问，无法进行自动分配")
+
+                try:
+                    with transaction.atomic():
+                        # 创建客户表
+                        form.instance.consultant_id = sale_id
+                        form.instance.recv_date = ctime
+                        form.instance.last_consult_date = ctime
+                        new_customer = form.save()
+
+                        # 创建客户分配表
+                        models.CustomerDistribution.objects.create(customer=new_customer,user_id = sale_id,ctime=ctime)
+
+
+                        # 发送消息
+                        message.send_message('1750936858@qq.com','骚峰','你别走了','来solo')
+
+                except Exception as e:
+                    # 创建客户和分配销售异常
+                    AutoSale.rollback(sale_id)
+                    return HttpResponse('录入异常')
 
                 return HttpResponse('录入成功')
 

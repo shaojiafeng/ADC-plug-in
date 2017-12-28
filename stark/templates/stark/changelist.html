@@ -1,11 +1,6 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" />
-    <link rel="stylesheet" href="{% static "css/stark-form.css" %}" />
+{% extends 'stark/layout.html' %}
+
+{% block css %}
     <style>
         .list-filter a{
             display: inline-block;
@@ -19,13 +14,12 @@
             color: white;
         }
     </style>
+{% endblock %}
 
-</head>
-<body>
-<div class="container">
+{% block body %}
     <h1>列表页面</h1>
 
-{% if cl.show_comb_filter %}
+    {% if cl.show_comb_filter %}
     <div class="list-filter">
         {% for filter_row in cl.gen_comb_filter %}
             <div>
@@ -42,7 +36,7 @@
     <a class="btn btn-primary" style="float: right;margin-top: 50px" href="{{ cl.add_url }}">添加</a>
     {% endif %}
 
-        {% if cl.show_search_form %}
+    {% if cl.show_search_form %}
         <div class="form-group">
             <form method="get">
                 <input name="{{ cl.config.search_key }}" value="{{ cl.search_form_val }}" class="form-control" placeholder="请输入搜索条件" type="text"  style="display:inline-block;width: 200px;"/>
@@ -95,11 +89,9 @@
             {{ cl.page_obj.page_html|safe }}
         </ul>
     </div>
+{% endblock %}
 
 
-</div>
 
 
 
-</body>
-</html>

@@ -25,7 +25,7 @@ class UserInfo(models.Model):
     username = models.CharField(verbose_name='用户名', max_length=32)
     password = models.CharField(verbose_name='密码', max_length=64)
     email = models.EmailField(verbose_name='邮箱', max_length=64)
-
+    openid = models.CharField(verbose_name='微信唯一ID', max_length=64, null=True, blank=True)
     depart = models.ForeignKey(verbose_name='部门', to="Department",to_field="code")
 
     def __str__(self):

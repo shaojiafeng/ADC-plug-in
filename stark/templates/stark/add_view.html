@@ -1,23 +1,15 @@
-{% load staticfiles %}
+{% extends 'stark/layout.html' %}
 {% load change_form %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" />
-    <link rel="stylesheet" href="{% static "css/stark-form.css" %}" />
 
 
-</head>
-<body>
 
-<div class="container">
+{% block body %}
     <h1>添加页面</h1>
 
     {% form config form %}
-</div>
+
+{% endblock %}
 
 
-</body>
-</html>
+
+

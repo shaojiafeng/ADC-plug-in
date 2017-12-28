@@ -5,8 +5,17 @@ from django.urls import reverse
 from django.shortcuts import HttpResponse,redirect,render
 from crm import models
 from django.db.models import Q
+from django.forms import ModelForm
 
 from stark.service import v1
+
+
+class SingleModelForm(ModelForm):
+    class Meta:
+        model = models.Customer
+        exclude = ['consultant','status','recv_date','last_consult_date']
+    # exclude   除了Customer里面的['consultant','status','recv_date','last_consult_date']字段，全部录入到ModelForm中
+
 
 
 class CustomerConfig(v1.StarkConfig):
@@ -75,6 +84,7 @@ class CustomerConfig(v1.StarkConfig):
             url(r'^public/$', self.wrap(self.public_view), name="%s_%s_public" % app_model_name),
             url(r'^user/$', self.wrap(self.user_view), name="%s_%s_user" % app_model_name),
             url(r'^(\d+)/competition/$', self.wrap(self.competition_view), name="%s_%s_competition" % app_model_name),
+            url(r'^single/$', self.wrap(self.single_view), name="%s_%s_single" % app_model_name),
 
         ]
         return patterns
@@ -93,7 +103,19 @@ class CustomerConfig(v1.StarkConfig):
         no_deal = ctime - datetime.timedelta(days=15)
         no_follow = ctime - datetime.timedelta(days=3)
 
+        # s1 = Q()
+        # s1.connector = 'OR'
+        # s1.children.append(("recv_date__lt", no_deal))
+        # s1.children.append(("last_consult_date__lt", no_follow))
+        # s2 = Q()
+        # s2.children.append(('status', 2))
+        # s1.add(s2, 'AND')
+        # customer_list = models.Customer.objects.filter(s1)
+
         #作业？
+        # current_user = 1
+        # models.Customer.objects.filter(Q(recv_date__lt=no_deal)|Q(last_consult_date__lt=no_follow),status=2).exclude(consultant_id=1)
+        # 作业：两种方法实现
 
 
         customer_list = models.Customer.objects.filter(Q(recv_date__lt=no_deal)|Q(last_consult_date__lt=no_follow),status=2)
@@ -138,6 +160,37 @@ class CustomerConfig(v1.StarkConfig):
         models.CustomerDistribution.objects.create(user_id=current_user_id,customer_id=cid,ctime=ctime)
 
         return HttpResponse('抢单成功')
+
+    def single_view(self,request):
+        """
+        单条录入客户信息
+        :param request:
+        :return:
+        """
+        if request.method == "GET":
+            form = SingleModelForm()
+            return render(request,'single_view.html',{'form':form})
+
+        else:
+            from xxxxxx import XXX
+            form = SingleModelForm(request.POST)
+
+            if form.is_valid():
+                print(form.cleaned_data)
+                sale_id = XXX.get_sale_id()
+                """客户表新增数据：
+                    - 获取该分配的课程顾问id
+                    - 当前时间
+                 客户分配表中新增数据
+                    - 获取新创建的客户ID
+                    - 顾问ID
+                """
+
+                return HttpResponse('录入成功')
+
+            else:
+                return render(request, 'single_view.html', {'form': form})
+
 
 
 

@@ -195,6 +195,18 @@ class CustomerDistribution(models.Model):
     memo = models.CharField(verbose_name='更多信息', max_length=255)
 
 
+class SaleRank(models.Model):
+    """
+    销售权重和数量
+    """
+    user = models.ForeignKey(to="UserInfo",limit_choices_to={'depart_id':1001})
+    num = models.IntegerField(verbose_name='数量')
+    weight = models.IntegerField(verbose_name='权重')
+
+
+
+
+
 class ConsultRecord(models.Model):
     """
     客户跟进记录

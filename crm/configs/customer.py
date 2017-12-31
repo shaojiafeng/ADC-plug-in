@@ -89,6 +89,7 @@ class CustomerConfig(v1.StarkConfig):
             url(r'^user/$', self.wrap(self.user_view), name="%s_%s_user" % app_model_name),
             url(r'^(\d+)/competition/$', self.wrap(self.competition_view), name="%s_%s_competition" % app_model_name),
             url(r'^single/$', self.wrap(self.single_view), name="%s_%s_single" % app_model_name),
+            url(r'^multi/$', self.wrap(self.multi_view), name="%s_%s_multi" % app_model_name),
 
         ]
         return patterns
@@ -217,6 +218,22 @@ class CustomerConfig(v1.StarkConfig):
 
             else:
                 return render(request, 'single_view.html', {'form': form})
+
+
+    def multi_view(self,request):
+        """
+        批量导入
+        :param request:
+        :return:
+        """
+        if request.method == "GET":
+            return render(request,'multi_view.html')
+
+        else:
+            from django.core.files.uploadedfile import InMemoryUploadedFile
+            file_obj=request.FILES.get('exfile')
+            with open('xxxxxx.xlsx',mode='wb')as f:
+                pass
 
 
 

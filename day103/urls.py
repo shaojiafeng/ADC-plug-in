@@ -18,6 +18,7 @@ from django.contrib import admin
 
 from stark.service import v1
 from app01 import views
+from crm import views
 
 from app03.views import hosts
 
@@ -26,6 +27,7 @@ from app03 import views
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url(r'^stark/', v1.site.urls),
+
     # url(r'^hosts/', hosts),
     # url(r'^users/', views.users),
     # url(r'^edit/(\d+)/', views.edit_host),

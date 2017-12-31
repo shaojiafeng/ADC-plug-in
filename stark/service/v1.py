@@ -4,6 +4,8 @@ from django.utils.safestring import mark_safe
 from django.urls import reverse
 from django.http import  QueryDict
 from django.db.models import Q
+from django.contrib import auth
+from django import forms
 import copy
 import json
 
@@ -553,13 +555,16 @@ class StarkSite(object):
         self._registry[model_class] = stark_config_class(model_class, self)
 
     def get_urls(self):
-        url_pattern = []
+        url_pattern = [
+            #url(r'^login/$', self.login, name='login'),
+        ]
 
         for model_class, stark_config_obj in self._registry.items():
             app_name = model_class._meta.app_label
             model_name = model_class._meta.model_name
 
             curd_url = url(r'^%s/%s/' % (app_name, model_name), (stark_config_obj.urls, None, None))
+            #login_url = url(r'^%s/%s/login' % (app_name, model_name), (stark_config_obj.urls, None, None))
             url_pattern.append(curd_url)
 
         return url_pattern
@@ -567,6 +572,7 @@ class StarkSite(object):
     @property
     def urls(self):
         return (self.get_urls(), None, 'stark')
+
 
 site = StarkSite()
 

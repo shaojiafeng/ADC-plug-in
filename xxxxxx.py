@@ -1,12 +1,11 @@
+import redis
 from crm import models
+
+POOL = redis.ConnectionPool(host='47.93.4.198', port=6379, password='123123')
+CONN = redis.Redis(connection_pool=POOL)
 
 
 class AutoSale(object):
-    users = None # [1,2,1,2,3,1,...]
-    iter_users = None # iter([1,2,1,2,3,1,...])
-    reset_status = False
-    rollback_list = []
-
 
     @classmethod
     def fetch_users(cls):
@@ -24,36 +23,53 @@ class AutoSale(object):
             count += 1
             if not flag:
                 break
-        cls.users = sale_id_list
+
+        if sale_id_list:
+            CONN.rpush('sale_id_list',*sale_id_list)
+            CONN.rpush('sale_id_list_origin',*sale_id_list)
+            return True
+        return False
 
     @classmethod
     def get_sale_id(cls):
-        if cls.rollback_list:
-            return cls.rollback_list.pop()
+        #查看原来的数据是否存在
+        sale_id_origin_count = CONN.llen('sale_id_list_origin')
+        if not sale_id_origin_count:
+            #去数据库中获取数据，并赋值给：原来的数据，pop数据
+            #redis中没有数据，去数据库中取值又没有取到，说明用户没有配置，则返回None
+            status = cls.fetch_users()
+            if not status:
+                return None
+
+        #如果有数据
+        user_id = CONN.lpop('sale_id_list')
+        if user_id:
+            return user_id
+
+        reset = CONN.get('sale_id_reset')
+        #要重置
+        if reset:
+            CONN.delete('sale_id_list_origin')
+            status = cls.fetch_users()
+            if not status:
+                return None
+            CONN.delete('sale_id_reset')
+            return CONN.lpop('sale_id_list')
+        else:
+            #如果没有重置，
+            ct = CONN.llen('sale_id_list_origin')
+            for i in range(ct):
+                v = CONN.lindex('sale_id_list_origin',i)
+                CONN.rpush('sale_id_list',v)
+
+            return CONN.lpop('sale_id_list')
 
 
-        if not cls.users:
-            cls.fetch_users()
-        # 没有课程顾问，则返回None
-        if not cls.users:
-            return None
-
-        if not cls.iter_users:
-            cls.iter_users = iter(cls.users)
-        try:
-            user_id = next(cls.iter_users)
-        except StopIteration as e:
-            if cls.reset_status:
-                cls.fetch_users()
-                cls.reset_status = False
-            cls.iter_users = iter(cls.users)
-            user_id = cls.get_sale_id()
-        return user_id
 
     @classmethod
     def reset(cls):
-        cls.reset_status = True
+        CONN.set('sale_id_reset',1)
 
     @classmethod
     def rollback(cls,nid):
-        cls.rollback_list.insert(0,nid)
+        CONN.lpush('sale_id_list',nid)

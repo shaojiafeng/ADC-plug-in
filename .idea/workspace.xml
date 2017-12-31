@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4cc8726-d5e1-475a-9590-db00bd9104dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/75feb6e7-6f77-4cab-a7f9-595a80e2e116/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/75feb6e7-6f77-4cab-a7f9-595a80e2e116/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/75feb6e7-6f77-4cab-a7f9-595a80e2e116/_metadata_/metadata.values.at" afterPath="$PROJECT_DIR$/.idea/dataSources/75feb6e7-6f77-4cab-a7f9-595a80e2e116/_metadata_/metadata.values.at" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/configs/customer.py" afterPath="$PROJECT_DIR$/crm/configs/customer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/views.py" afterPath="$PROJECT_DIR$/crm/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day103/urls.py" afterPath="$PROJECT_DIR$/day103/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stark/service/v1.py" afterPath="$PROJECT_DIR$/stark/service/v1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xxxxxx.py" afterPath="$PROJECT_DIR$/xxxxxx.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day103/settings.py" afterPath="$PROJECT_DIR$/day103/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/multi_view.html" afterPath="$PROJECT_DIR$/templates/multi_view.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,8 +49,8 @@
       <file leaf-file-name="customer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crm/configs/customer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="236" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+            <state relative-caret-position="286">
+              <caret line="239" column="56" lean-forward="true" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
                 <element signature="e#759#834#0" expanded="false" />
@@ -66,8 +62,17 @@
                 <element signature="e#3363#4348#0" expanded="false" />
                 <element signature="e#4391#4728#0" expanded="false" />
                 <element signature="e#4782#5534#0" expanded="false" />
-                <element signature="e#5580#7211#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/day103/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="127" column="20" lean-forward="true" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -75,8 +80,8 @@
       <file leaf-file-name="multi_view.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/multi_view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -85,7 +90,7 @@
       <file leaf-file-name="v1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="669">
+            <state relative-caret-position="4389">
               <caret line="558" column="37" lean-forward="false" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
@@ -117,11 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="xxxxxx.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="xxxxxx.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xxxxxx.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+              <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <element signature="e#234#863#0" expanded="false" />
@@ -237,7 +242,6 @@
         <option value="$PROJECT_DIR$/templates/public_view.html" />
         <option value="$PROJECT_DIR$/templates/user_view.html" />
         <option value="$PROJECT_DIR$/templates/single_view.html" />
-        <option value="$PROJECT_DIR$/day103/settings.py" />
         <option value="$PROJECT_DIR$/crm/models.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/reg.html" />
@@ -246,9 +250,10 @@
         <option value="$PROJECT_DIR$/stark/templates/stark/login.html" />
         <option value="$PROJECT_DIR$/crm/views.py" />
         <option value="$PROJECT_DIR$/stark/service/v1.py" />
-        <option value="$PROJECT_DIR$/templates/multi_view.html" />
-        <option value="$PROJECT_DIR$/crm/configs/customer.py" />
         <option value="$PROJECT_DIR$/xxxxxx.py" />
+        <option value="$PROJECT_DIR$/crm/configs/customer.py" />
+        <option value="$PROJECT_DIR$/templates/multi_view.html" />
+        <option value="$PROJECT_DIR$/day103/settings.py" />
       </list>
     </option>
   </component>
@@ -259,10 +264,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="126" />
-    <option name="y" value="48" />
+    <option name="x" value="184" />
+    <option name="y" value="26" />
     <option name="width" value="1706" />
-    <option name="height" value="944" />
+    <option name="height" value="941" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -290,12 +295,12 @@
             <path>
               <item name="day103" type="b2602c69:ProjectViewProjectNode" />
               <item name="day103" type="462c0819:PsiDirectoryNode" />
-              <item name="crm" type="462c0819:PsiDirectoryNode" />
+              <item name="day103" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="day103" type="b2602c69:ProjectViewProjectNode" />
               <item name="day103" type="462c0819:PsiDirectoryNode" />
-              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="day103" type="b2602c69:ProjectViewProjectNode" />
@@ -320,15 +325,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\sjf\PycharmProjects\day103\stark\templates\stark" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sjf\PycharmProjects\day103\static" />
       <recent name="C:\Users\sjf\PycharmProjects\day103\stark\static\bootstrap\css" />
       <recent name="C:\Users\sjf\PycharmProjects\day103\stark\static\bootstrap\js" />
       <recent name="C:\Users\sjf\PycharmProjects\day103\templates" />
       <recent name="C:\Users\sjf\PycharmProjects\day103" />
-      <recent name="C:\Users\sjf\PycharmProjects\day103\utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sjf\PycharmProjects\day103\stark\templates\stark" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -412,16 +417,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="126" y="48" width="1706" height="944" extended-state="0" />
+    <frame x="184" y="26" width="1706" height="941" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14652015" sideWeight="0.4950495" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14835165" sideWeight="0.4950495" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16258064" sideWeight="0.50289017" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08608059" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24254215" sideWeight="0.49710983" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16205534" sideWeight="0.49710983" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.335958" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12860727" sideWeight="0.5049505" order="2" side_tool="true" content_ui="tabs" />
@@ -634,14 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/day103/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="126" column="23" lean-forward="false" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crm/stark.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-545">
@@ -807,37 +804,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crm/configs/customer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="236" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#759#834#0" expanded="false" />
-            <element signature="e#904#982#0" expanded="false" />
-            <element signature="e#1049#1616#0" expanded="false" />
-            <element signature="e#1683#1760#0" expanded="false" />
-            <element signature="e#1819#1956#0" expanded="false" />
-            <element signature="e#2188#2532#0" expanded="false" />
-            <element signature="e#3363#4348#0" expanded="false" />
-            <element signature="e#4391#4728#0" expanded="false" />
-            <element signature="e#4782#5534#0" expanded="false" />
-            <element signature="e#5580#7211#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/multi_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
+        <state relative-caret-position="4389">
           <caret line="558" column="37" lean-forward="false" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
@@ -871,12 +840,47 @@
     <entry file="file://$PROJECT_DIR$/xxxxxx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+          <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
             <element signature="e#234#863#0" expanded="false" />
             <element signature="e#916#1890#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/multi_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crm/configs/customer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="239" column="56" lean-forward="true" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#759#834#0" expanded="false" />
+            <element signature="e#904#982#0" expanded="false" />
+            <element signature="e#1049#1616#0" expanded="false" />
+            <element signature="e#1683#1760#0" expanded="false" />
+            <element signature="e#1819#1956#0" expanded="false" />
+            <element signature="e#2188#2532#0" expanded="false" />
+            <element signature="e#3363#4348#0" expanded="false" />
+            <element signature="e#4391#4728#0" expanded="false" />
+            <element signature="e#4782#5534#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day103/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="127" column="20" lean-forward="true" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -233,9 +233,29 @@ class CustomerConfig(v1.StarkConfig):
             from django.core.files.uploadedfile import InMemoryUploadedFile
             file_obj=request.FILES.get('exfile')
             with open('xxxxxx.xlsx',mode='wb')as f:
-                pass
+                for chunk in file_obj:
+                    f.write(chunk)
 
+            import xlrd
+            workbook = xlrd.open_workbook('xxxxxx.xlsx')
 
+            sheet = workbook.sheet_by_index(0)
+            maps = {
+                0:'name',
+                1:'qq',
+            }
+
+            for index in range(1,sheet.nrows):
+                row = sheet.row(index)
+
+                row_dict = {}
+                for i in range(len(maps)):
+                    key = maps[i]
+                    cell = row[i]
+                    row_dict[key] = cell.value
+                print(row_dict)
+
+            return HttpResponse('上传成功')
 
 
 

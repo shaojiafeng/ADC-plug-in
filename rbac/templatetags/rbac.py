@@ -10,6 +10,7 @@ def menu_html(request):
     :param request:
     :return:
     """
+
     menu_list = request.session[settings.PERMISSION_MENU_KEY]
     current_url = request.path_info
 

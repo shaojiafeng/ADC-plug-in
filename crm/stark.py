@@ -6,9 +6,36 @@ from django.shortcuts import redirect,render,HttpResponse
 
 from django.forms import ModelForm
 
+class BasePermission(object):
+
+    """
+    根据权限信息，确定是否显示页面的添加，编辑，以及删除按钮
+    """
+    def get_show_add_btn(self):
+        code_list = self.request.permission_code_list
+        if "add" in code_list:
+            return True
+
+    def get_edit_link(self):
+        code_list = self.request.permission_code_list
+        if "edit" in code_list:
+            return super(SchoolConfig,self).get_edit_link()
+        else:
+            return []
+
+    def get_list_display(self):
+        code_list = self.request.permission_code_list
+        data = []
+        if self.list_display:
+            data.extend(self.list_display)
+            if "del" in code_list:
+                data.append(v1.StarkConfig.delete)
+            data.insert(0,v1.StarkConfig.checkbox)
+        return data
 
 
-class DepartmentConfig(v1.StarkConfig):
+
+class DepartmentConfig(BasePermission,v1.StarkConfig):
     list_display = ['title','code']
     # def get_list_display(self):
     #     result = []
@@ -24,7 +51,7 @@ v1.site.register(models.Department,DepartmentConfig)
 
 
 
-class UserInfoConfig(v1.StarkConfig):
+class UserInfoConfig(BasePermission,v1.StarkConfig):
 
     #模糊查询
     show_search_form = True
@@ -48,7 +75,7 @@ v1.site.register(models.UserInfo,UserInfoConfig)
 
 
 
-class CourseConfig(v1.StarkConfig):
+class CourseConfig(BasePermission,v1.StarkConfig):
     list_display = ['name']
     edit_link = ['name']
 
@@ -56,14 +83,15 @@ v1.site.register(models.Course,CourseConfig)
 
 
 
-class SchoolConfig(v1.StarkConfig):
+class SchoolConfig(BasePermission,v1.StarkConfig):
     list_display = ['title']
-    edit_link = ['title']
+    edit_link = ['title',]
 
 v1.site.register(models.School,SchoolConfig)
 
 
-class ClassListConfig(v1.StarkConfig):
+
+class ClassListConfig(BasePermission,v1.StarkConfig):
 
     def course_semester(self,obj=None,is_header=False):
         if is_header:
@@ -105,7 +133,7 @@ v1.site.register(models.Customer,CustomerConfig)
 
 
 # 跟进记录
-class ConsultRecordConfig(v1.StarkConfig):
+class ConsultRecordConfig(BasePermission,v1.StarkConfig):
 
     list_display = ['customer','consultant','date']
 
@@ -130,9 +158,7 @@ v1.site.register(models.ConsultRecord,ConsultRecordConfig)
 
 
 
-
-
-class PaymentRecordConfig(v1.StarkConfig):
+class PaymentRecordConfig(BasePermission,v1.StarkConfig):
 
 
     list_display = ['customer','class_list','consultant']
@@ -151,7 +177,7 @@ v1.site.register(models.Student,StudentConfig)
 
 
 #老师上课记录
-class CourseRecordConfig(v1.StarkConfig):
+class CourseRecordConfig(BasePermission,v1.StarkConfig):
 
     def extra_url(self):
         app_model_name = (self.model_class._meta.app_label, self.model_class._meta.model_name,)
@@ -267,7 +293,7 @@ v1.site.register(models.CourseRecord,CourseRecordConfig)
 
 
 #学生学习记录
-class StudyRecordConfig(v1.StarkConfig):
+class StudyRecordConfig(BasePermission,v1.StarkConfig):
 
     def display_record(self,obj=None,is_header=False):
         if is_header:

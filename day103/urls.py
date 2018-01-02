@@ -23,7 +23,7 @@ from crm import views
 
 from app03.views import hosts
 
-from app03 import views
+#from app03 import views
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),

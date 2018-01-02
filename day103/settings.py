@@ -55,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rbac.middlewares.rbac.LoginMiddleware',
+    'rbac.middlewares.rbac.RbacMiddleware',
 ]
 
 ROOT_URLCONF = 'day103.urls'
@@ -139,3 +141,13 @@ MESSAGE_CLASSES = [
     'utils.message.wx.WeChat',
     'utils.message.dingding.DingDing',
 ]
+
+#rbac 的配置
+PERMISSION_URL_DICT_KEY = "permission_url_dict"
+PERMISSION_MENU_KEY = "afsdfasdfadfsdfsdf"
+
+VALID_URL = [
+    "/login/",
+    "/index/"
+]
+

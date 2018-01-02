@@ -43,1433 +43,1678 @@
     <table id="37" parent="2" name="django_content_type"/>
     <table id="38" parent="2" name="django_migrations"/>
     <table id="39" parent="2" name="django_session"/>
-    <table id="40" parent="2" name="sqlite_master">
+    <table id="40" parent="2" name="rbac_group"/>
+    <table id="41" parent="2" name="rbac_menu"/>
+    <table id="42" parent="2" name="rbac_permission"/>
+    <table id="43" parent="2" name="rbac_role"/>
+    <table id="44" parent="2" name="rbac_role_permissions"/>
+    <table id="45" parent="2" name="rbac_user"/>
+    <table id="46" parent="2" name="rbac_user_roles"/>
+    <table id="47" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="41" parent="2" name="sqlite_sequence">
+    <table id="48" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <column id="42" parent="6" name="id">
+    <column id="49" parent="6" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="43" parent="6" name="hostname">
+    <column id="50" parent="6" name="hostname">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="6" name="ip">
+    <column id="51" parent="6" name="ip">
       <Position>2</Position>
       <DataType>char(39)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="45" parent="6" name="port">
+    <column id="52" parent="6" name="port">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="46" parent="6">
+    <key id="53" parent="6">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="47" parent="7" name="id">
+    <column id="54" parent="7" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="48" parent="7" name="caption">
+    <column id="55" parent="7" name="caption">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="49" parent="7">
+    <key id="56" parent="7">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="50" parent="8" name="id">
+    <column id="57" parent="8" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="51" parent="8" name="name">
+    <column id="58" parent="8" name="name">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="52" parent="8" name="email">
+    <column id="59" parent="8" name="email">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="8" name="pwd">
+    <column id="60" parent="8" name="pwd">
       <Position>3</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="54" parent="8" name="ut_id">
+    <column id="61" parent="8" name="ut_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="55" parent="8" name="app01_userinfo_ut_id_0cd67de5">
+    <index id="62" parent="8" name="app01_userinfo_ut_id_0cd67de5">
       <ColNames>ut_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="56" parent="8">
+    <key id="63" parent="8">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="57" parent="8">
+    <foreign-key id="64" parent="8">
       <ColNames>ut_id</ColNames>
       <RefTableName>app01_usertype</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="58" parent="9" name="id">
+    <column id="65" parent="9" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="59" parent="9" name="xxx">
+    <column id="66" parent="9" name="xxx">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="60" parent="9">
+    <key id="67" parent="9">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="61" parent="10" name="id">
+    <column id="68" parent="10" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="62" parent="10" name="caption">
+    <column id="69" parent="10" name="caption">
       <Position>1</Position>
       <DataType>varchar(23)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="63" parent="10">
+    <key id="70" parent="10">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="64" parent="11" name="id">
+    <column id="71" parent="11" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="65" parent="11" name="title">
+    <column id="72" parent="11" name="title">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="66" parent="11">
+    <key id="73" parent="11">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="67" parent="12" name="id">
+    <column id="74" parent="12" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="68" parent="12" name="name">
+    <column id="75" parent="12" name="name">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="12" name="email">
+    <column id="76" parent="12" name="email">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="70" parent="12" name="gender">
+    <column id="77" parent="12" name="gender">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="71" parent="12" name="depart_id">
+    <column id="78" parent="12" name="depart_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="72" parent="12" name="app04_userinfo_depart_id_452600b3">
+    <index id="79" parent="12" name="app04_userinfo_depart_id_452600b3">
       <ColNames>depart_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="73" parent="12">
+    <key id="80" parent="12">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="74" parent="12">
+    <foreign-key id="81" parent="12">
       <ColNames>depart_id</ColNames>
       <RefTableName>app04_department</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="75" parent="13" name="id">
+    <column id="82" parent="13" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="76" parent="13" name="userinfo_id">
+    <column id="83" parent="13" name="userinfo_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="13" name="role_id">
+    <column id="84" parent="13" name="role_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="78" parent="13" name="app04_userinfo_roles_userinfo_id_role_id_8ccbbd47_uniq">
+    <index id="85" parent="13" name="app04_userinfo_roles_userinfo_id_role_id_8ccbbd47_uniq">
       <ColNames>userinfo_id
 role_id</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="79" parent="13" name="app04_userinfo_roles_userinfo_id_ee64132f">
+    <index id="86" parent="13" name="app04_userinfo_roles_userinfo_id_ee64132f">
       <ColNames>userinfo_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="80" parent="13" name="app04_userinfo_roles_role_id_20c6ae58">
+    <index id="87" parent="13" name="app04_userinfo_roles_role_id_20c6ae58">
       <ColNames>role_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="81" parent="13">
+    <key id="88" parent="13">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="82" parent="13">
+    <foreign-key id="89" parent="13">
       <ColNames>userinfo_id</ColNames>
       <RefTableName>app04_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="83" parent="13">
+    <foreign-key id="90" parent="13">
       <ColNames>role_id</ColNames>
       <RefTableName>app04_role</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="84" parent="14" name="id">
+    <column id="91" parent="14" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="85" parent="14" name="name">
+    <column id="92" parent="14" name="name">
       <Position>1</Position>
       <DataType>varchar(80)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="86" parent="14" name="sqlite_autoindex_auth_group_1">
+    <index id="93" parent="14" name="sqlite_autoindex_auth_group_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="87" parent="14">
+    <key id="94" parent="14">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="88" parent="14">
+    <key id="95" parent="14">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_auth_group_1</UnderlyingIndexName>
     </key>
-    <column id="89" parent="15" name="id">
+    <column id="96" parent="15" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="90" parent="15" name="group_id">
+    <column id="97" parent="15" name="group_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="91" parent="15" name="permission_id">
+    <column id="98" parent="15" name="permission_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="92" parent="15" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
+    <index id="99" parent="15" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
       <ColNames>group_id
 permission_id</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="93" parent="15" name="auth_group_permissions_group_id_b120cbf9">
+    <index id="100" parent="15" name="auth_group_permissions_group_id_b120cbf9">
       <ColNames>group_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="94" parent="15" name="auth_group_permissions_permission_id_84c5c92e">
+    <index id="101" parent="15" name="auth_group_permissions_permission_id_84c5c92e">
       <ColNames>permission_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="95" parent="15">
+    <key id="102" parent="15">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="96" parent="15">
+    <foreign-key id="103" parent="15">
       <ColNames>group_id</ColNames>
       <RefTableName>auth_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="97" parent="15">
+    <foreign-key id="104" parent="15">
       <ColNames>permission_id</ColNames>
       <RefTableName>auth_permission</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="98" parent="16" name="id">
+    <column id="105" parent="16" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="99" parent="16" name="content_type_id">
+    <column id="106" parent="16" name="content_type_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="100" parent="16" name="codename">
+    <column id="107" parent="16" name="codename">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="101" parent="16" name="name">
+    <column id="108" parent="16" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="102" parent="16" name="auth_permission_content_type_id_codename_01ab375a_uniq">
+    <index id="109" parent="16" name="auth_permission_content_type_id_codename_01ab375a_uniq">
       <ColNames>content_type_id
 codename</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="103" parent="16" name="auth_permission_content_type_id_2f476e4b">
+    <index id="110" parent="16" name="auth_permission_content_type_id_2f476e4b">
       <ColNames>content_type_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="104" parent="16">
+    <key id="111" parent="16">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="105" parent="16">
+    <foreign-key id="112" parent="16">
       <ColNames>content_type_id</ColNames>
       <RefTableName>django_content_type</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="106" parent="17" name="id">
+    <column id="113" parent="17" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="107" parent="17" name="password">
+    <column id="114" parent="17" name="password">
       <Position>1</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="108" parent="17" name="last_login">
+    <column id="115" parent="17" name="last_login">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="109" parent="17" name="is_superuser">
+    <column id="116" parent="17" name="is_superuser">
       <Position>3</Position>
       <DataType>bool|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="110" parent="17" name="first_name">
+    <column id="117" parent="17" name="first_name">
       <Position>4</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="111" parent="17" name="last_name">
+    <column id="118" parent="17" name="last_name">
       <Position>5</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="112" parent="17" name="email">
+    <column id="119" parent="17" name="email">
       <Position>6</Position>
       <DataType>varchar(254)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="113" parent="17" name="is_staff">
+    <column id="120" parent="17" name="is_staff">
       <Position>7</Position>
       <DataType>bool|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="114" parent="17" name="is_active">
+    <column id="121" parent="17" name="is_active">
       <Position>8</Position>
       <DataType>bool|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="115" parent="17" name="date_joined">
+    <column id="122" parent="17" name="date_joined">
       <Position>9</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="116" parent="17" name="username">
+    <column id="123" parent="17" name="username">
       <Position>10</Position>
       <DataType>varchar(150)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="117" parent="17" name="sqlite_autoindex_auth_user_1">
+    <index id="124" parent="17" name="sqlite_autoindex_auth_user_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>username</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="118" parent="17">
+    <key id="125" parent="17">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="119" parent="17">
+    <key id="126" parent="17">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_auth_user_1</UnderlyingIndexName>
     </key>
-    <column id="120" parent="18" name="id">
+    <column id="127" parent="18" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="121" parent="18" name="user_id">
+    <column id="128" parent="18" name="user_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="122" parent="18" name="group_id">
+    <column id="129" parent="18" name="group_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="123" parent="18" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
+    <index id="130" parent="18" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
       <ColNames>user_id
 group_id</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="124" parent="18" name="auth_user_groups_user_id_6a12ed8b">
+    <index id="131" parent="18" name="auth_user_groups_user_id_6a12ed8b">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="125" parent="18" name="auth_user_groups_group_id_97559544">
+    <index id="132" parent="18" name="auth_user_groups_group_id_97559544">
       <ColNames>group_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="126" parent="18">
+    <key id="133" parent="18">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="127" parent="18">
+    <foreign-key id="134" parent="18">
       <ColNames>user_id</ColNames>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="128" parent="18">
+    <foreign-key id="135" parent="18">
       <ColNames>group_id</ColNames>
       <RefTableName>auth_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="129" parent="19" name="id">
+    <column id="136" parent="19" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="130" parent="19" name="user_id">
+    <column id="137" parent="19" name="user_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="131" parent="19" name="permission_id">
+    <column id="138" parent="19" name="permission_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="132" parent="19" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
+    <index id="139" parent="19" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
       <ColNames>user_id
 permission_id</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="133" parent="19" name="auth_user_user_permissions_user_id_a95ead1b">
+    <index id="140" parent="19" name="auth_user_user_permissions_user_id_a95ead1b">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="134" parent="19" name="auth_user_user_permissions_permission_id_1fbb5f2c">
+    <index id="141" parent="19" name="auth_user_user_permissions_permission_id_1fbb5f2c">
       <ColNames>permission_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="135" parent="19">
+    <key id="142" parent="19">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="136" parent="19">
+    <foreign-key id="143" parent="19">
       <ColNames>user_id</ColNames>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="137" parent="19">
+    <foreign-key id="144" parent="19">
       <ColNames>permission_id</ColNames>
       <RefTableName>auth_permission</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="138" parent="20" name="id">
+    <column id="145" parent="20" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="139" parent="20" name="semester">
+    <column id="146" parent="20" name="semester">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="140" parent="20" name="price">
+    <column id="147" parent="20" name="price">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="141" parent="20" name="start_date">
+    <column id="148" parent="20" name="start_date">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="142" parent="20" name="graduate_date">
+    <column id="149" parent="20" name="graduate_date">
       <Position>4</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="143" parent="20" name="memo">
+    <column id="150" parent="20" name="memo">
       <Position>5</Position>
       <DataType>varchar(256)|0</DataType>
     </column>
-    <column id="144" parent="20" name="course_id">
+    <column id="151" parent="20" name="course_id">
       <Position>6</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="145" parent="20" name="school_id">
+    <column id="152" parent="20" name="school_id">
       <Position>7</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="146" parent="20" name="tutor_id">
+    <column id="153" parent="20" name="tutor_id">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="147" parent="20" name="crm_classlist_course_id_8a4c36de">
+    <index id="154" parent="20" name="crm_classlist_course_id_8a4c36de">
       <ColNames>course_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="148" parent="20" name="crm_classlist_school_id_1f6915e9">
+    <index id="155" parent="20" name="crm_classlist_school_id_1f6915e9">
       <ColNames>school_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="149" parent="20" name="crm_classlist_tutor_id_983e3fa4">
+    <index id="156" parent="20" name="crm_classlist_tutor_id_983e3fa4">
       <ColNames>tutor_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="150" parent="20">
+    <key id="157" parent="20">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="151" parent="20">
+    <foreign-key id="158" parent="20">
       <ColNames>course_id</ColNames>
       <RefTableName>crm_course</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="152" parent="20">
+    <foreign-key id="159" parent="20">
       <ColNames>school_id</ColNames>
       <RefTableName>crm_school</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="153" parent="20">
+    <foreign-key id="160" parent="20">
       <ColNames>tutor_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="154" parent="21" name="id">
+    <column id="161" parent="21" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="155" parent="21" name="classlist_id">
+    <column id="162" parent="21" name="classlist_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="156" parent="21" name="userinfo_id">
+    <column id="163" parent="21" name="userinfo_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="157" parent="21">
+    <key id="164" parent="21">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="158" parent="21">
+    <foreign-key id="165" parent="21">
       <ColNames>classlist_id</ColNames>
       <RefTableName>crm_classlist</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="159" parent="21">
+    <foreign-key id="166" parent="21">
       <ColNames>userinfo_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="160" parent="22" name="id">
+    <column id="167" parent="22" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="161" parent="22" name="date">
+    <column id="168" parent="22" name="date">
       <Position>1</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="162" parent="22" name="note">
+    <column id="169" parent="22" name="note">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="163" parent="22" name="consultant_id">
+    <column id="170" parent="22" name="consultant_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="164" parent="22" name="customer_id">
+    <column id="171" parent="22" name="customer_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="165" parent="22" name="crm_consultrecord_consultant_id_0a04c00c">
+    <index id="172" parent="22" name="crm_consultrecord_consultant_id_0a04c00c">
       <ColNames>consultant_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="166" parent="22" name="crm_consultrecord_customer_id_c1259023">
+    <index id="173" parent="22" name="crm_consultrecord_customer_id_c1259023">
       <ColNames>customer_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="167" parent="22">
+    <key id="174" parent="22">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="168" parent="22">
+    <foreign-key id="175" parent="22">
       <ColNames>consultant_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="169" parent="22">
+    <foreign-key id="176" parent="22">
       <ColNames>customer_id</ColNames>
       <RefTableName>crm_customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="170" parent="23" name="id">
+    <column id="177" parent="23" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="171" parent="23" name="name">
+    <column id="178" parent="23" name="name">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="172" parent="23">
+    <key id="179" parent="23">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="173" parent="24" name="id">
+    <column id="180" parent="24" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="174" parent="24" name="day_num">
+    <column id="181" parent="24" name="day_num">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="175" parent="24" name="date">
+    <column id="182" parent="24" name="date">
       <Position>2</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="176" parent="24" name="course_title">
+    <column id="183" parent="24" name="course_title">
       <Position>3</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="177" parent="24" name="course_memo">
+    <column id="184" parent="24" name="course_memo">
       <Position>4</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="178" parent="24" name="has_homework">
+    <column id="185" parent="24" name="has_homework">
       <Position>5</Position>
       <DataType>bool|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="179" parent="24" name="homework_title">
+    <column id="186" parent="24" name="homework_title">
       <Position>6</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="180" parent="24" name="homework_memo">
+    <column id="187" parent="24" name="homework_memo">
       <Position>7</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="181" parent="24" name="exam">
+    <column id="188" parent="24" name="exam">
       <Position>8</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="182" parent="24" name="class_obj_id">
+    <column id="189" parent="24" name="class_obj_id">
       <Position>9</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="183" parent="24" name="teacher_id">
+    <column id="190" parent="24" name="teacher_id">
       <Position>10</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="184" parent="24" name="crm_courserecord_class_obj_id_d7c27425">
+    <index id="191" parent="24" name="crm_courserecord_class_obj_id_d7c27425">
       <ColNames>class_obj_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="185" parent="24" name="crm_courserecord_teacher_id_3ace9808">
+    <index id="192" parent="24" name="crm_courserecord_teacher_id_3ace9808">
       <ColNames>teacher_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="186" parent="24">
+    <key id="193" parent="24">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="187" parent="24">
+    <foreign-key id="194" parent="24">
       <ColNames>class_obj_id</ColNames>
       <RefTableName>crm_classlist</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="188" parent="24">
+    <foreign-key id="195" parent="24">
       <ColNames>teacher_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="189" parent="25" name="id">
+    <column id="196" parent="25" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="190" parent="25" name="qq">
+    <column id="197" parent="25" name="qq">
       <Position>1</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="191" parent="25" name="name">
+    <column id="198" parent="25" name="name">
       <Position>2</Position>
       <DataType>varchar(16)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="192" parent="25" name="gender">
+    <column id="199" parent="25" name="gender">
       <Position>3</Position>
       <DataType>smallint|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="193" parent="25" name="education">
+    <column id="200" parent="25" name="education">
       <Position>4</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="194" parent="25" name="graduation_school">
+    <column id="201" parent="25" name="graduation_school">
       <Position>5</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="195" parent="25" name="major">
+    <column id="202" parent="25" name="major">
       <Position>6</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="196" parent="25" name="experience">
+    <column id="203" parent="25" name="experience">
       <Position>7</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="197" parent="25" name="work_status">
+    <column id="204" parent="25" name="work_status">
       <Position>8</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="198" parent="25" name="company">
+    <column id="205" parent="25" name="company">
       <Position>9</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="199" parent="25" name="salary">
+    <column id="206" parent="25" name="salary">
       <Position>10</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="200" parent="25" name="source">
+    <column id="207" parent="25" name="source">
       <Position>11</Position>
       <DataType>smallint|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="201" parent="25" name="status">
+    <column id="208" parent="25" name="status">
       <Position>12</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="202" parent="25" name="date">
+    <column id="209" parent="25" name="date">
       <Position>13</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="203" parent="25" name="last_consult_date">
+    <column id="210" parent="25" name="last_consult_date">
       <Position>14</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="204" parent="25" name="consultant_id">
+    <column id="211" parent="25" name="consultant_id">
       <Position>15</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="205" parent="25" name="recv_date">
+    <column id="212" parent="25" name="recv_date">
       <Position>16</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="206" parent="25" name="referral_from_id">
+    <column id="213" parent="25" name="referral_from_id">
       <Position>17</Position>
       <DataType>integer|0</DataType>
     </column>
-    <index id="207" parent="25" name="sqlite_autoindex_crm_customer_1">
+    <index id="214" parent="25" name="sqlite_autoindex_crm_customer_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>qq</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="208" parent="25" name="crm_customer_consultant_id_11f5298a">
+    <index id="215" parent="25" name="crm_customer_consultant_id_11f5298a">
       <ColNames>consultant_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="209" parent="25" name="crm_customer_referral_from_id_b8b6cc8b">
+    <index id="216" parent="25" name="crm_customer_referral_from_id_b8b6cc8b">
       <ColNames>referral_from_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="210" parent="25">
+    <key id="217" parent="25">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="211" parent="25">
+    <key id="218" parent="25">
       <ColNames>qq</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_crm_customer_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="212" parent="25">
+    <foreign-key id="219" parent="25">
       <ColNames>consultant_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="213" parent="25">
+    <foreign-key id="220" parent="25">
       <ColNames>referral_from_id</ColNames>
       <RefTableName>crm_customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="214" parent="26" name="id">
+    <column id="221" parent="26" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="215" parent="26" name="customer_id">
+    <column id="222" parent="26" name="customer_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="216" parent="26" name="course_id">
+    <column id="223" parent="26" name="course_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="217" parent="26">
+    <key id="224" parent="26">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="218" parent="26">
+    <foreign-key id="225" parent="26">
       <ColNames>customer_id</ColNames>
       <RefTableName>crm_customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="219" parent="26">
+    <foreign-key id="226" parent="26">
       <ColNames>course_id</ColNames>
       <RefTableName>crm_course</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="220" parent="27" name="id">
+    <column id="227" parent="27" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="221" parent="27" name="ctime">
+    <column id="228" parent="27" name="ctime">
       <Position>1</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="222" parent="27" name="status">
+    <column id="229" parent="27" name="status">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="223" parent="27" name="memo">
+    <column id="230" parent="27" name="memo">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="224" parent="27" name="customer_id">
+    <column id="231" parent="27" name="customer_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="225" parent="27" name="user_id">
+    <column id="232" parent="27" name="user_id">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="226" parent="27" name="crm_customerdistribution_customer_id_937a2b36">
+    <index id="233" parent="27" name="crm_customerdistribution_customer_id_937a2b36">
       <ColNames>customer_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="227" parent="27" name="crm_customerdistribution_user_id_ebef808e">
+    <index id="234" parent="27" name="crm_customerdistribution_user_id_ebef808e">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="228" parent="27">
+    <key id="235" parent="27">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="229" parent="27">
+    <foreign-key id="236" parent="27">
       <ColNames>customer_id</ColNames>
       <RefTableName>crm_customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="230" parent="27">
+    <foreign-key id="237" parent="27">
       <ColNames>user_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="231" parent="28" name="title">
+    <column id="238" parent="28" name="title">
       <DataType>varchar(16)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="232" parent="28" name="code">
+    <column id="239" parent="28" name="code">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="233" parent="28">
+    <key id="240" parent="28">
       <ColNames>code</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="234" parent="29" name="id">
+    <column id="241" parent="29" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="235" parent="29" name="pay_type">
+    <column id="242" parent="29" name="pay_type">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="236" parent="29" name="paid_fee">
+    <column id="243" parent="29" name="paid_fee">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="237" parent="29" name="turnover">
+    <column id="244" parent="29" name="turnover">
       <Position>3</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="238" parent="29" name="quote">
+    <column id="245" parent="29" name="quote">
       <Position>4</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="239" parent="29" name="note">
+    <column id="246" parent="29" name="note">
       <Position>5</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="240" parent="29" name="date">
+    <column id="247" parent="29" name="date">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="241" parent="29" name="class_list_id">
+    <column id="248" parent="29" name="class_list_id">
       <Position>7</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="242" parent="29" name="consultant_id">
+    <column id="249" parent="29" name="consultant_id">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="243" parent="29" name="customer_id">
+    <column id="250" parent="29" name="customer_id">
       <Position>9</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="244" parent="29" name="crm_paymentrecord_class_list_id_cb210621">
+    <index id="251" parent="29" name="crm_paymentrecord_class_list_id_cb210621">
       <ColNames>class_list_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="245" parent="29" name="crm_paymentrecord_consultant_id_45289fb8">
+    <index id="252" parent="29" name="crm_paymentrecord_consultant_id_45289fb8">
       <ColNames>consultant_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="246" parent="29" name="crm_paymentrecord_customer_id_cd6d33f2">
+    <index id="253" parent="29" name="crm_paymentrecord_customer_id_cd6d33f2">
       <ColNames>customer_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="247" parent="29">
+    <key id="254" parent="29">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="248" parent="29">
+    <foreign-key id="255" parent="29">
       <ColNames>class_list_id</ColNames>
       <RefTableName>crm_classlist</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="249" parent="29">
+    <foreign-key id="256" parent="29">
       <ColNames>consultant_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="250" parent="29">
+    <foreign-key id="257" parent="29">
       <ColNames>customer_id</ColNames>
       <RefTableName>crm_customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="251" parent="30" name="id">
+    <column id="258" parent="30" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="252" parent="30" name="num">
+    <column id="259" parent="30" name="num">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="253" parent="30" name="weight">
+    <column id="260" parent="30" name="weight">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="254" parent="30" name="user_id">
+    <column id="261" parent="30" name="user_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="255" parent="30" name="crm_salerank_user_id_2499ad28">
+    <index id="262" parent="30" name="crm_salerank_user_id_2499ad28">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="256" parent="30">
+    <key id="263" parent="30">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="257" parent="30">
+    <foreign-key id="264" parent="30">
       <ColNames>user_id</ColNames>
       <RefTableName>crm_userinfo</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="258" parent="31" name="id">
+    <column id="265" parent="31" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="259" parent="31" name="title">
+    <column id="266" parent="31" name="title">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="260" parent="31">
+    <key id="267" parent="31">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="261" parent="32" name="id">
+    <column id="268" parent="32" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="262" parent="32" name="username">
+    <column id="269" parent="32" name="username">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="263" parent="32" name="password">
+    <column id="270" parent="32" name="password">
       <Position>2</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="264" parent="32" name="emergency_contract">
+    <column id="271" parent="32" name="emergency_contract">
       <Position>3</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="265" parent="32" name="company">
+    <column id="272" parent="32" name="company">
       <Position>4</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="266" parent="32" name="location">
+    <column id="273" parent="32" name="location">
       <Position>5</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="267" parent="32" name="position">
+    <column id="274" parent="32" name="position">
       <Position>6</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="268" parent="32" name="salary">
+    <column id="275" parent="32" name="salary">
       <Position>7</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="269" parent="32" name="welfare">
+    <column id="276" parent="32" name="welfare">
       <Position>8</Position>
       <DataType>varchar(256)|0</DataType>
     </column>
-    <column id="270" parent="32" name="date">
+    <column id="277" parent="32" name="date">
       <Position>9</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="271" parent="32" name="memo">
+    <column id="278" parent="32" name="memo">
       <Position>10</Position>
       <DataType>varchar(256)|0</DataType>
     </column>
-    <column id="272" parent="32" name="customer_id">
+    <column id="279" parent="32" name="customer_id">
       <Position>11</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="273" parent="32" name="sqlite_autoindex_crm_student_1">
+    <index id="280" parent="32" name="sqlite_autoindex_crm_student_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>customer_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="274" parent="32">
+    <key id="281" parent="32">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="275" parent="32">
+    <key id="282" parent="32">
       <ColNames>customer_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_crm_student_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="276" parent="32">
+    <foreign-key id="283" parent="32">
       <ColNames>customer_id</ColNames>
       <RefTableName>crm_customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="277" parent="33" name="id">
+    <column id="284" parent="33" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="278" parent="33" name="student_id">
+    <column id="285" parent="33" name="student_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="279" parent="33" name="classlist_id">
+    <column id="286" parent="33" name="classlist_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="280" parent="33" name="crm_student_class_list_student_id_classlist_id_d0898601_uniq">
+    <index id="287" parent="33" name="crm_student_class_list_student_id_classlist_id_d0898601_uniq">
       <ColNames>student_id
 classlist_id</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="281" parent="33" name="crm_student_class_list_student_id_d059682a">
+    <index id="288" parent="33" name="crm_student_class_list_student_id_d059682a">
       <ColNames>student_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="282" parent="33" name="crm_student_class_list_classlist_id_848399d7">
+    <index id="289" parent="33" name="crm_student_class_list_classlist_id_848399d7">
       <ColNames>classlist_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="283" parent="33">
+    <key id="290" parent="33">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="284" parent="33">
+    <foreign-key id="291" parent="33">
       <ColNames>student_id</ColNames>
       <RefTableName>crm_student</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="285" parent="33">
+    <foreign-key id="292" parent="33">
       <ColNames>classlist_id</ColNames>
       <RefTableName>crm_classlist</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="286" parent="34" name="id">
+    <column id="293" parent="34" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="287" parent="34" name="record">
+    <column id="294" parent="34" name="record">
       <Position>1</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="288" parent="34" name="score">
+    <column id="295" parent="34" name="score">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="289" parent="34" name="homework_note">
+    <column id="296" parent="34" name="homework_note">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="290" parent="34" name="note">
+    <column id="297" parent="34" name="note">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="291" parent="34" name="homework">
+    <column id="298" parent="34" name="homework">
       <Position>5</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="292" parent="34" name="stu_memo">
+    <column id="299" parent="34" name="stu_memo">
       <Position>6</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="293" parent="34" name="date">
+    <column id="300" parent="34" name="date">
       <Position>7</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="294" parent="34" name="course_record_id">
+    <column id="301" parent="34" name="course_record_id">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="295" parent="34" name="student_id">
+    <column id="302" parent="34" name="student_id">
       <Position>9</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="296" parent="34" name="crm_studyrecord_course_record_id_e3601e93">
+    <index id="303" parent="34" name="crm_studyrecord_course_record_id_e3601e93">
       <ColNames>course_record_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="297" parent="34" name="crm_studyrecord_student_id_18b0c323">
+    <index id="304" parent="34" name="crm_studyrecord_student_id_18b0c323">
       <ColNames>student_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="298" parent="34">
+    <key id="305" parent="34">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="299" parent="34">
+    <foreign-key id="306" parent="34">
       <ColNames>course_record_id</ColNames>
       <RefTableName>crm_courserecord</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="300" parent="34">
+    <foreign-key id="307" parent="34">
       <ColNames>student_id</ColNames>
       <RefTableName>crm_student</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="301" parent="35" name="id">
+    <column id="308" parent="35" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="302" parent="35" name="name">
+    <column id="309" parent="35" name="name">
       <Position>1</Position>
       <DataType>varchar(16)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="303" parent="35" name="username">
+    <column id="310" parent="35" name="username">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="304" parent="35" name="password">
+    <column id="311" parent="35" name="password">
       <Position>3</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="305" parent="35" name="email">
+    <column id="312" parent="35" name="email">
       <Position>4</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="306" parent="35" name="depart_id">
+    <column id="313" parent="35" name="depart_id">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="307" parent="35" name="openid">
+    <column id="314" parent="35" name="openid">
       <Position>6</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <index id="308" parent="35" name="crm_userinfo_depart_id_8301dc31">
+    <column id="315" parent="35" name="auth_id">
+      <Position>7</Position>
+      <DataType>integer|0</DataType>
+    </column>
+    <index id="316" parent="35" name="sqlite_autoindex_crm_userinfo_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>auth_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="317" parent="35" name="crm_userinfo_depart_id_8301dc31">
       <ColNames>depart_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="309" parent="35">
+    <key id="318" parent="35">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="310" parent="35">
+    <key id="319" parent="35">
+      <ColNames>auth_id</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_crm_userinfo_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="320" parent="35">
       <ColNames>depart_id</ColNames>
       <RefTableName>crm_department</RefTableName>
       <RefColNames>code</RefColNames>
     </foreign-key>
-    <column id="311" parent="36" name="id">
+    <foreign-key id="321" parent="35">
+      <ColNames>auth_id</ColNames>
+      <RefTableName>rbac_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="322" parent="36" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="312" parent="36" name="object_id">
+    <column id="323" parent="36" name="object_id">
       <Position>1</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="313" parent="36" name="object_repr">
+    <column id="324" parent="36" name="object_repr">
       <Position>2</Position>
       <DataType>varchar(200)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="314" parent="36" name="action_flag">
+    <column id="325" parent="36" name="action_flag">
       <Position>3</Position>
       <DataType>smallint unsigned|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="315" parent="36" name="change_message">
+    <column id="326" parent="36" name="change_message">
       <Position>4</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="316" parent="36" name="content_type_id">
+    <column id="327" parent="36" name="content_type_id">
       <Position>5</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="317" parent="36" name="user_id">
+    <column id="328" parent="36" name="user_id">
       <Position>6</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="318" parent="36" name="action_time">
+    <column id="329" parent="36" name="action_time">
       <Position>7</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="319" parent="36" name="django_admin_log_content_type_id_c4bce8eb">
+    <index id="330" parent="36" name="django_admin_log_content_type_id_c4bce8eb">
       <ColNames>content_type_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="320" parent="36" name="django_admin_log_user_id_c564eba6">
+    <index id="331" parent="36" name="django_admin_log_user_id_c564eba6">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="321" parent="36">
+    <key id="332" parent="36">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="322" parent="36">
+    <foreign-key id="333" parent="36">
       <ColNames>content_type_id</ColNames>
       <RefTableName>django_content_type</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="323" parent="36">
+    <foreign-key id="334" parent="36">
       <ColNames>user_id</ColNames>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="324" parent="37" name="id">
+    <column id="335" parent="37" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="325" parent="37" name="app_label">
+    <column id="336" parent="37" name="app_label">
       <Position>1</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="326" parent="37" name="model">
+    <column id="337" parent="37" name="model">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="327" parent="37" name="django_content_type_app_label_model_76bd3d3b_uniq">
+    <index id="338" parent="37" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
       <ColumnCollations>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="328" parent="37">
+    <key id="339" parent="37">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="329" parent="38" name="id">
+    <column id="340" parent="38" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="330" parent="38" name="app">
+    <column id="341" parent="38" name="app">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="331" parent="38" name="name">
+    <column id="342" parent="38" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="332" parent="38" name="applied">
+    <column id="343" parent="38" name="applied">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="333" parent="38">
+    <key id="344" parent="38">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="334" parent="39" name="session_key">
+    <column id="345" parent="39" name="session_key">
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="335" parent="39" name="session_data">
+    <column id="346" parent="39" name="session_data">
       <Position>1</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="336" parent="39" name="expire_date">
+    <column id="347" parent="39" name="expire_date">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="337" parent="39" name="sqlite_autoindex_django_session_1">
+    <index id="348" parent="39" name="sqlite_autoindex_django_session_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>session_key</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="338" parent="39" name="django_session_expire_date_a5c62663">
+    <index id="349" parent="39" name="django_session_expire_date_a5c62663">
       <ColNames>expire_date</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="339" parent="39">
+    <key id="350" parent="39">
       <ColNames>session_key</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_django_session_1</UnderlyingIndexName>
     </key>
-    <column id="340" parent="40" name="type">
+    <column id="351" parent="40" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="352" parent="40" name="caption">
+      <Position>1</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="353" parent="40" name="menu_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="354" parent="40" name="rbac_group_menu_id_5efd8ac8">
+      <ColNames>menu_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="355" parent="40">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="356" parent="40">
+      <ColNames>menu_id</ColNames>
+      <RefTableName>rbac_menu</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="357" parent="41" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="358" parent="41" name="title">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="359" parent="41">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="360" parent="42" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="361" parent="42" name="title">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="362" parent="42" name="url">
+      <Position>2</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="363" parent="42" name="code">
+      <Position>3</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="364" parent="42" name="group_id">
+      <Position>4</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="365" parent="42" name="menu_gp_id">
+      <Position>5</Position>
+      <DataType>integer|0</DataType>
+    </column>
+    <index id="366" parent="42" name="rbac_permission_group_id_1164c21c">
+      <ColNames>group_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="367" parent="42" name="rbac_permission_menu_gp_id_c7391cce">
+      <ColNames>menu_gp_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="368" parent="42">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="369" parent="42">
+      <ColNames>group_id</ColNames>
+      <RefTableName>rbac_group</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="370" parent="42">
+      <ColNames>menu_gp_id</ColNames>
+      <RefTableName>rbac_permission</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="371" parent="43" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="372" parent="43" name="title">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="373" parent="43">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="374" parent="44" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="375" parent="44" name="role_id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="376" parent="44" name="permission_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="377" parent="44" name="rbac_role_permissions_role_id_permission_id_d01303da_uniq">
+      <ColNames>role_id
+permission_id</ColNames>
+      <ColumnCollations>
+</ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="378" parent="44" name="rbac_role_permissions_role_id_d10416cb">
+      <ColNames>role_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="379" parent="44" name="rbac_role_permissions_permission_id_f5e1e866">
+      <ColNames>permission_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="380" parent="44">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="381" parent="44">
+      <ColNames>role_id</ColNames>
+      <RefTableName>rbac_role</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="382" parent="44">
+      <ColNames>permission_id</ColNames>
+      <RefTableName>rbac_permission</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="383" parent="45" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="384" parent="45" name="username">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="385" parent="45" name="password">
+      <Position>2</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="386" parent="45" name="email">
+      <Position>3</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="387" parent="45">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="388" parent="46" name="id">
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="389" parent="46" name="user_id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="390" parent="46" name="role_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="391" parent="46" name="rbac_user_roles_user_id_role_id_60665088_uniq">
+      <ColNames>user_id
+role_id</ColNames>
+      <ColumnCollations>
+</ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="392" parent="46" name="rbac_user_roles_user_id_01d9ab9e">
+      <ColNames>user_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="393" parent="46" name="rbac_user_roles_role_id_363ee4fe">
+      <ColNames>role_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="394" parent="46">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="395" parent="46">
+      <ColNames>user_id</ColNames>
+      <RefTableName>rbac_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="396" parent="46">
+      <ColNames>role_id</ColNames>
+      <RefTableName>rbac_role</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="397" parent="47" name="type">
       <DataType>text|0</DataType>
     </column>
-    <column id="341" parent="40" name="name">
+    <column id="398" parent="47" name="name">
       <Position>1</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="342" parent="40" name="tbl_name">
+    <column id="399" parent="47" name="tbl_name">
       <Position>2</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="343" parent="40" name="rootpage">
+    <column id="400" parent="47" name="rootpage">
       <Position>3</Position>
       <DataType>integer|0</DataType>
     </column>
-    <column id="344" parent="40" name="sql">
+    <column id="401" parent="47" name="sql">
       <Position>4</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="345" parent="41" name="name"/>
-    <column id="346" parent="41" name="seq">
+    <column id="402" parent="48" name="name"/>
+    <column id="403" parent="48" name="seq">
       <Position>1</Position>
     </column>
   </database-model>

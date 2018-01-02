@@ -22,10 +22,7 @@ class DepartmentConfig(v1.StarkConfig):
 v1.site.register(models.Department,DepartmentConfig)
 
 
-# class UserInfoModelForm(ModelForm):
-#     class Meta:
-#         model = models.UserInfo
-#         fields = ["username","password"]
+
 
 class UserInfoConfig(v1.StarkConfig):
 
@@ -43,8 +40,6 @@ class UserInfoConfig(v1.StarkConfig):
         v1.FilterOption('depart'),
 
     ]
-
-
 
 
 
@@ -138,11 +133,6 @@ v1.site.register(models.ConsultRecord,ConsultRecordConfig)
 
 
 class PaymentRecordConfig(v1.StarkConfig):
-    # def pay_type_choices(self,obj=None,is_header=False):
-    #     if is_header:
-    #         return '缴费类型选择'
-    #     return obj.get_pay_type_choices_display
-
 
 
     list_display = ['customer','class_list','consultant']

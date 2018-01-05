@@ -537,8 +537,6 @@ class StarkConfig(object):
         return redirect(self.get_list_url())
 
 
-
-
 #StarkSite类：是一个容器，用于放置处理请求的对应关系
 class StarkSite(object):
     def __init__(self):

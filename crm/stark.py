@@ -4,7 +4,9 @@ from django.utils.safestring import mark_safe
 from django.conf.urls import url
 from django.shortcuts import redirect,render,HttpResponse
 
-from django.forms import ModelForm
+
+
+
 
 class BasePermission(object):
 
@@ -18,8 +20,10 @@ class BasePermission(object):
 
     def get_edit_link(self):
         code_list = self.request.permission_code_list
+
         if "edit" in code_list:
-            return super(SchoolConfig,self).get_edit_link()
+            #return super(SchoolConfig,self).get_edit_link()
+            return v1.StarkConfig.get_edit_link(self)
         else:
             return []
 

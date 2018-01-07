@@ -205,9 +205,6 @@ class SaleRank(models.Model):
     weight = models.IntegerField(verbose_name='权重')
 
 
-
-
-
 class ConsultRecord(models.Model):
     """
     客户跟进记录
@@ -286,6 +283,9 @@ class CourseRecord(models.Model):
 
 
 class StudyRecord(models.Model):
+    """
+    学习记录详细表
+    """
     course_record = models.ForeignKey(verbose_name="第几天课程", to="CourseRecord")
     student = models.ForeignKey(verbose_name="学员", to='Student')
     record_choices = (('checked', "已签到"),
